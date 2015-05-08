@@ -26,8 +26,23 @@ int Packet::getData(char* data){
 }
 
 void Packet::putCrc() {
-    bitset<528> mainpart;
-    
+    char packchar[72] = {0};
+    crc.reset();
+    Crc32 crcgen;
+
+    getMessageBytePacket(packchar);
+    crcgen.AddData((unsigned char*)packchar, 66);
+    crc = bitset<48>((crcgen.getCrc32()));
+}
+
+int Packet::checkCrc() {
+    char packchar[72] = {0};
+    Crc32 crcgen;
+
+    getMessageByPacket(packchar);
+    crcgen.AddData((unsigned char*)packchar, 66);
+    bitset<48> crccheck(crcgen.getCrc32());
+    return crccheck.to_ulong() == crc.to_ulong();
 }
 
 bitset<528> Packet::getPacketBitsetKam() {
