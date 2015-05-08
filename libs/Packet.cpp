@@ -26,6 +26,8 @@ int Packet::getData(char* data){
 }
 
 void Packet::putCrc() {
+    bitset<528> mainpart;
+    
 }
 
 bitset<528> Packet::getPacketBitsetKam() {
@@ -105,4 +107,9 @@ void Packet::setPacketFromArray ( char* pack ){
             crc[(i-528)%48] = pack[i/8] & (1<<(i%8)) ;
         }
     }
+}
+
+void Packet::decTtl(){
+    if(ttl.to_ulong()>0)
+        ttl = bitset<32>(ttl.to_ulong()-1);
 }
