@@ -5,8 +5,18 @@
 
 #pragma once
 
-#include "primary_header.h"
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 #include "crc.h"
+#include "primary_header.h"
+
 
 #define  ADDR_LEN 128
 #define DATA_LEN 23
@@ -16,7 +26,8 @@ enum PacketType{
     CONTROL,
     SETADDR,
     DATA,
-    CONNECT
+    CONNECT,
+    SETUPSERVICE
 };
 
 class Packet {
@@ -42,8 +53,10 @@ public:
     void getMessageByPacket ( char* );
     void getPacketByMessage ( char* );
 
-    Packet() {  }
-    Packet( char* ss ) { setPacketFromArray(ss); }
+    void send(int);
+
+    Packet() { ttl = bitset<32>(INIT_TTL); }
+    Packet( char* ss ) { getPacketByMessage(ss); }
 private:
     bitset<16> type;
     bitset<128> dest;

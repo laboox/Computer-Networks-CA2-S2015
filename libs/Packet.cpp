@@ -30,7 +30,7 @@ void Packet::putCrc() {
     crc.reset();
     Crc32 crcgen;
 
-    getMessageBytePacket(packchar);
+    getMessageByPacket(packchar);
     crcgen.AddData((unsigned char*)packchar, 66);
     crc = bitset<48>((crcgen.getCrc32()));
 }
@@ -83,7 +83,7 @@ bitset<576> Packet::getPacketBitset(){
     return ret;
 }
 
-void Packet::getPacketByteArray ( char* pack ){
+void Packet::getMessageByPacket ( char* pack ){
     bitset<576> packSet;
     packSet = getPacketBitset();
     for( int i=0; i<576; i++ ) {
@@ -91,7 +91,7 @@ void Packet::getPacketByteArray ( char* pack ){
     }
 }
 
-void Packet::setPacketFromArray ( char* pack ){
+void Packet::getPacketByMessage ( char* pack ){
     type.reset();
     dest.reset();
     source.reset();
@@ -127,4 +127,11 @@ void Packet::setPacketFromArray ( char* pack ){
 void Packet::decTtl(){
     if(ttl.to_ulong()>0)
         ttl = bitset<32>(ttl.to_ulong()-1);
+}
+
+void Packet::send(int sockfd) {
+    char packbuf[72] = {0};
+    getMessageByPacket(packbuf);
+    int n = sendto(sockfd, packbuf, 72, 0,NULL,0);
+    return; 
 }
