@@ -17,6 +17,8 @@
 #include <cctype>
 #include <cstdint>
 
+#define STDIN 0
+
 using namespace std;
 
 typedef pair<int, int> pii;

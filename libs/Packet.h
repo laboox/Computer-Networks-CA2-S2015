@@ -21,13 +21,16 @@
 #define  ADDR_LEN 128
 #define DATA_LEN 23
 #define INIT_TTL 20
+#define MSG_LEN 72
 
 enum PacketType{
-    CONTROL,
+    UPDATE,
     SETADDR,
+    REQADDR,
     DATA,
     CONNECT,
-    SETUPSERVICE
+    SETUPSERVICE,
+    GET_SERVICES_LIST
 };
 
 class Packet {
@@ -53,10 +56,11 @@ public:
     void getMessageByPacket ( char* );
     void getPacketByMessage ( char* );
 
-    void send(int);
+    void send(int sock, int port);
+    void recive(int sock, struct sockaddr_in* from_sockadrr);
 
-    Packet() { ttl = bitset<32>(INIT_TTL); }
-    Packet( char* ss ) { getPacketByMessage(ss); }
+    Packet();
+    Packet( char* ss );
 private:
     bitset<16> type;
     bitset<128> dest;

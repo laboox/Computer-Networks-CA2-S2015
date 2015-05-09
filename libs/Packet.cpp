@@ -129,9 +129,65 @@ void Packet::decTtl(){
         ttl = bitset<32>(ttl.to_ulong()-1);
 }
 
-void Packet::send(int sockfd) {
+Packet::Packet()
+{
+    setTtl(INIT_TTL);
+}
+
+Packet::Packet(char* ss) 
+{ 
+    setTtl(INIT_TTL);
+    getPacketByMessage(ss); 
+}
+
+void Packet::send(int sock, int port)
+{
+    struct sockaddr_in to_sockadrr;
+    int tolen = sizeof(to_sockadrr);
+    bzero(&to_sockadrr, tolen);
+    
+    putCrc();
+
+    to_sockadrr.sin_family=AF_INET;
+    to_sockadrr.sin_addr.s_addr=INADDR_ANY;
+    to_sockadrr.sin_port=htons(port);
+    
+    char msg[MSG_LEN] = {0};
+    this->getMessageByPacket(msg);
+
+    int n=sendto(sock, msg, MSG_LEN, 0, (struct sockaddr *)&to_sockadrr, tolen);
+    if(n<0) 
+        throw Exeption("Error in sendto");
+}
+
+void Packet::recive(int sock, struct sockaddr_in* from_sockadrr)
+{
+    char msg[MSG_LEN] = {0};
+    socklen_t fromlen = sizeof(struct sockaddr_in);
+    int n=recvfrom(sock, msg, MSG_LEN, 0, (struct sockaddr *)from_sockadrr, &fromlen);
+    if(n<0) 
+        throw Exeption("Error in recvfrom");
+    this->getPacketByMessage(msg);
+    if(!checkCrc())
+        throw Exeption("CRC Error.");
+}
+
+/*void Packet::send(int sockfd) {
     char packbuf[72] = {0};
+    putCrc();
     getMessageByPacket(packbuf);
     int n = sendto(sockfd, packbuf, 72, 0,NULL,0);
+    if(n!=72)
+        throw Exeption("Packet couldn't send");
     return; 
 }
+
+void Packet::recive(int sockfd, struct sockaddr *src_add, socklen_t *addrlen){
+    char packbuf[72] = {0};
+    int n = recvfrom(sockfd, packbuf, 72, 0, src_add, addrlen);
+    if(n!=72)
+        throw Exeption("Packet couldn't recive.");
+    getPacketByMessage(packbuf);
+    if(!checkCrc())
+        throw Exeption("CRC failed.");
+}*/
