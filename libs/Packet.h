@@ -57,6 +57,7 @@ public:
     void getPacketByMessage ( char* );
 
     void send(int sock, int port);
+    void send(int sock, struct sockaddr_in* to_sockaddr);
     void recive(int sock, struct sockaddr_in* from_sockadrr);
 
     Packet();

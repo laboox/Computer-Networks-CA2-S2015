@@ -160,6 +160,18 @@ void Packet::send(int sock, int port)
         throw Exeption("Error in sendto");
 }
 
+void Packet::send(int sock, struct sockaddr_in* to_sockaddr)
+{
+    int tolen = sizeof(struct sockaddr_in);
+    putCrc();
+    char msg[MSG_LEN] = {0};
+    this->getMessageByPacket(msg);
+
+    int n=sendto(sock, msg, MSG_LEN, 0, (struct sockaddr *)to_sockaddr, tolen);
+    if(n<0) 
+        throw Exeption("Error in sendto");
+}
+
 void Packet::recive(int sock, struct sockaddr_in* from_sockadrr)
 {
     char msg[MSG_LEN] = {0};

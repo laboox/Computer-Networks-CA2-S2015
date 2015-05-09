@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     while (1) {
        Packet p;
        p.recive(sock, &from);
-       p.send(sock, from.sin_port);
+       p.send(sock, &from);
        cout<<"packet recived!\n";
        /*n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
        if (n < 0) error("recvfrom");
