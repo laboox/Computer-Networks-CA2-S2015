@@ -38,6 +38,10 @@ int main(int argc, char *argv[])
    Packet p;
    p.setData("salam", 6);
    p.send(sock, atoi(argv[2]));
+   p.recive(sock, &from);
+
+   p.getData(buffer);
+   cout<<buffer<<endl;
 
    /*printf("Please enter the message: ");
    bzero(buffer,256);
