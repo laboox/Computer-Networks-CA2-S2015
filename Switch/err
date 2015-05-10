@@ -1,0 +1,1207 @@
+In file included from Switch.cpp:1:0:
+Switch.h:31:2: error: stray ‘\331’ in program
+  vector<int> connectedـswitch;
+  ^
+Switch.h:31:2: error: stray ‘\200’ in program
+Switch.cpp:40:5: error: stray ‘\331’ in program
+     for(int i=0; i<connectedـswitch; i++)
+     ^
+Switch.cpp:40:5: error: stray ‘\200’ in program
+Switch.cpp:41:9: error: stray ‘\331’ in program
+         if(connectedـswitch[i]==port)
+         ^
+Switch.cpp:41:9: error: stray ‘\200’ in program
+Switch.cpp:55:5: error: stray ‘\331’ in program
+     connectedـswitch.push_back(port);
+     ^
+Switch.cpp:55:5: error: stray ‘\200’ in program
+Switch.cpp:68:5: error: stray ‘\331’ in program
+     if(connectedـclient.find(clinet_addr) == connectedـclient.end())
+     ^
+Switch.cpp:68:5: error: stray ‘\200’ in program
+Switch.cpp:68:5: error: stray ‘\331’ in program
+Switch.cpp:68:5: error: stray ‘\200’ in program
+Switch.cpp:70:5: error: stray ‘\331’ in program
+     connectedـclient.erase(connectedـclient.find(clinet_addr));
+     ^
+Switch.cpp:70:5: error: stray ‘\200’ in program
+Switch.cpp:70:5: error: stray ‘\331’ in program
+Switch.cpp:70:5: error: stray ‘\200’ in program
+Switch.cpp:79:9: error: stray ‘\331’ in program
+         for(int j=0; j<connectedـswitch.size(); j++)
+         ^
+Switch.cpp:79:9: error: stray ‘\200’ in program
+Switch.cpp:88:13: error: stray ‘\331’ in program
+             p.send(sock, connectedـswitch[j]);
+             ^
+Switch.cpp:88:13: error: stray ‘\200’ in program
+Switch.cpp:103:5: error: stray ‘\331’ in program
+     if(connectedـclient.find(dest) != connectedـclient.end())
+     ^
+Switch.cpp:103:5: error: stray ‘\200’ in program
+Switch.cpp:103:5: error: stray ‘\331’ in program
+Switch.cpp:103:5: error: stray ‘\200’ in program
+Switch.cpp:104:9: error: stray ‘\331’ in program
+         return connectedـclient[dest];
+         ^
+Switch.cpp:104:9: error: stray ‘\200’ in program
+Switch.cpp:117:5: error: stray ‘\331’ in program
+     for(int i=0; i<connectedـswitch.size(); i++)
+     ^
+Switch.cpp:117:5: error: stray ‘\200’ in program
+Switch.cpp:118:9: error: stray ‘\331’ in program
+         if(connectedـswitch[i]==sender_port)
+         ^
+Switch.cpp:118:9: error: stray ‘\200’ in program
+Switch.cpp:127:5: error: stray ‘\331’ in program
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+     ^
+Switch.cpp:127:5: error: stray ‘\200’ in program
+Switch.cpp:127:5: error: stray ‘\331’ in program
+Switch.cpp:127:5: error: stray ‘\200’ in program
+Switch.cpp:132:5: error: stray ‘\331’ in program
+     connectedـclient[addr] = from;
+     ^
+Switch.cpp:132:5: error: stray ‘\200’ in program
+In file included from Switch.cpp:1:0:
+Switch.h:31:14: error: expected ‘;’ at end of member declaration
+  vector<int> connectedـswitch;
+              ^
+Switch.h:31:25: error: expected unqualified-id before ‘switch’
+  vector<int> connectedـswitch;
+                         ^
+Switch.cpp: In member function ‘void Switch::connect(int)’:
+Switch.cpp:40:19: error: no match for ‘operator<’ (operand types are ‘int’ and ‘std::vector<int>’)
+     for(int i=0; i<connectedـswitch; i++)
+                   ^
+Switch.cpp:40:19: note: candidates are:
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_pair.h:220:5: note: template<class _T1, class _T2> constexpr bool std::operator<(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_pair.h:220:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::pair<_T1, _T2>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:298:5: note: template<class _Iterator> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator<(const reverse_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:298:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:348:5: note: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator<(const reverse_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:348:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:1072:5: note: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::move_iterator<_Iterator>&, const std::move_iterator<_IteratorR>&)
+     operator<(const move_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:1072:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::move_iterator<_Iterator>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:1078:5: note: template<class _Iterator> bool std::operator<(const std::move_iterator<_Iterator>&, const std::move_iterator<_Iterator>&)
+     operator<(const move_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:1078:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::move_iterator<_Iterator>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2588:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2588:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2600:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2600:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2612:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2612:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const _CharT*’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/vector:64:0,
+                 from ../libs/primary_header.h:5,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_vector.h:1528:5: note: template<class _Tp, class _Alloc> bool std::operator<(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_vector.h:1528:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::vector<_Tp, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:980:5: note: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator<(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator<(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:980:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/tuple:39:0,
+                 from /usr/include/c++/4.9/bits/stl_map.h:63,
+                 from /usr/include/c++/4.9/map:61,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/array:242:5: note: template<class _Tp, long unsigned int _Nm> bool std::operator<(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)
+     operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
+     ^
+/usr/include/c++/4.9/array:242:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::array<_Tp, _Nm>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_map.h:63:0,
+                 from /usr/include/c++/4.9/map:61,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/tuple:857:5: note: template<class ... _TElements, class ... _UElements> constexpr bool std::operator<(const std::tuple<_Args1 ...>&, const std::tuple<_Args2 ...>&)
+     operator<(const tuple<_TElements...>& __t,
+     ^
+/usr/include/c++/4.9/tuple:857:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::tuple<_Args1 ...>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/map:61:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_map.h:1017:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_map.h:1017:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::map<_Key, _Tp, _Compare, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/map:62:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_multimap.h:920:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multimap.h:920:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:844:5: note: template<class _Iterator, class _Container> bool __gnu_cxx::operator<(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)
+     operator<(const __normal_iterator<_Iterator, _Container>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:844:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const __gnu_cxx::__normal_iterator<_Iterator, _Container>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:837:5: note: template<class _IteratorL, class _IteratorR, class _Container> bool __gnu_cxx::operator<(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)
+     operator<(const __normal_iterator<_IteratorL, _Container>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:837:5: note:   template argument deduction/substitution failed:
+Switch.cpp:40:20: note:   mismatched types ‘const __gnu_cxx::__normal_iterator<_IteratorL, _Container>’ and ‘int’
+     for(int i=0; i<connectedـswitch; i++)
+                    ^
+Switch.cpp:40:31: error: expected ‘;’ before ‘switch’
+     for(int i=0; i<connectedـswitch; i++)
+                               ^
+Switch.cpp:40:31: error: expected primary-expression before ‘switch’
+Switch.cpp:40:31: error: expected ‘)’ before ‘switch’
+Switch.cpp:40:37: error: expected ‘(’ before ‘;’ token
+     for(int i=0; i<connectedـswitch; i++)
+                                     ^
+Switch.cpp:40:39: error: ‘i’ was not declared in this scope
+     for(int i=0; i<connectedـswitch; i++)
+                                       ^
+Switch.cpp:44:40: error: ‘routing_table’ was not declared in this scope
+     for(map<address, pii>::iterator it=routing_table.begin(); it!=routing_table.end(); ++it)
+                                        ^
+Switch.cpp:50:34: error: cannot convert ‘std::pair<int, int>’ to ‘int’ for argument ‘1’ to ‘std::string itoa(int)’
+         string len=itoa((*it).LEN);
+                                  ^
+Switch.cpp:55:16: error: expected ‘;’ before ‘switch’
+     connectedـswitch.push_back(port);
+                ^
+Switch.cpp:58:7: error: ‘class Packet’ has no member named ‘Type’
+     p.Type=CONNECT;
+       ^
+Switch.cpp: In function ‘void disconnect(Packet)’:
+Switch.cpp:67:5: error: ‘addr’ was not declared in this scope
+     addr clinet_addr = p.getSource();
+     ^
+Switch.cpp:68:8: error: ‘connected’ was not declared in this scope
+     if(connectedـclient.find(clinet_addr) == connectedـclient.end())
+        ^
+Switch.cpp:68:19: error: expected ‘)’ before ‘client’
+     if(connectedـclient.find(clinet_addr) == connectedـclient.end())
+                   ^
+Switch.cpp:69:39: error: ‘clinet_addr’ was not declared in this scope
+         throw Exeption("Error: User "+clinet_addr.to_string()+" is not in connected list");
+                                       ^
+Switch.cpp:70:5: error: ‘connected’ was not declared in this scope
+     connectedـclient.erase(connectedـclient.find(clinet_addr));
+     ^
+Switch.cpp: In member function ‘void Switch::update_routing_table(address, int, int)’:
+Switch.cpp:75:8: error: ‘routing_table’ was not declared in this scope
+     if(routing_table.find(dest)==routing_table.end() or routing_table[dest].LEN > (len+1))
+        ^
+Switch.cpp:75:84: error: ‘len’ was not declared in this scope
+     if(routing_table.find(dest)==routing_table.end() or routing_table[dest].LEN > (len+1))
+                                                                                    ^
+Switch.cpp:79:23: error: no match for ‘operator<’ (operand types are ‘int’ and ‘std::vector<int>’)
+         for(int j=0; j<connectedـswitch.size(); j++)
+                       ^
+Switch.cpp:79:23: note: candidates are:
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_pair.h:220:5: note: template<class _T1, class _T2> constexpr bool std::operator<(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_pair.h:220:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::pair<_T1, _T2>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:298:5: note: template<class _Iterator> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator<(const reverse_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:298:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:348:5: note: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator<(const reverse_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:348:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:1072:5: note: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::move_iterator<_Iterator>&, const std::move_iterator<_IteratorR>&)
+     operator<(const move_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:1072:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::move_iterator<_Iterator>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:1078:5: note: template<class _Iterator> bool std::operator<(const std::move_iterator<_Iterator>&, const std::move_iterator<_Iterator>&)
+     operator<(const move_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:1078:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::move_iterator<_Iterator>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2588:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2588:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2600:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2600:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2612:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2612:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const _CharT*’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/vector:64:0,
+                 from ../libs/primary_header.h:5,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_vector.h:1528:5: note: template<class _Tp, class _Alloc> bool std::operator<(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_vector.h:1528:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::vector<_Tp, _Alloc>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:980:5: note: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator<(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator<(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:980:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/tuple:39:0,
+                 from /usr/include/c++/4.9/bits/stl_map.h:63,
+                 from /usr/include/c++/4.9/map:61,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/array:242:5: note: template<class _Tp, long unsigned int _Nm> bool std::operator<(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)
+     operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
+     ^
+/usr/include/c++/4.9/array:242:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::array<_Tp, _Nm>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/bits/stl_map.h:63:0,
+                 from /usr/include/c++/4.9/map:61,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/tuple:857:5: note: template<class ... _TElements, class ... _UElements> constexpr bool std::operator<(const std::tuple<_Args1 ...>&, const std::tuple<_Args2 ...>&)
+     operator<(const tuple<_TElements...>& __t,
+     ^
+/usr/include/c++/4.9/tuple:857:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::tuple<_Args1 ...>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/map:61:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_map.h:1017:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_map.h:1017:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::map<_Key, _Tp, _Compare, _Alloc>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/map:62:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_multimap.h:920:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multimap.h:920:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:844:5: note: template<class _Iterator, class _Container> bool __gnu_cxx::operator<(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)
+     operator<(const __normal_iterator<_Iterator, _Container>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:844:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const __gnu_cxx::__normal_iterator<_Iterator, _Container>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:837:5: note: template<class _IteratorL, class _IteratorR, class _Container> bool __gnu_cxx::operator<(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)
+     operator<(const __normal_iterator<_IteratorL, _Container>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:837:5: note:   template argument deduction/substitution failed:
+Switch.cpp:79:24: note:   mismatched types ‘const __gnu_cxx::__normal_iterator<_IteratorL, _Container>’ and ‘int’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                        ^
+Switch.cpp:79:35: error: expected ‘;’ before ‘switch’
+         for(int j=0; j<connectedـswitch.size(); j++)
+                                   ^
+Switch.cpp:79:35: error: expected primary-expression before ‘switch’
+Switch.cpp:79:35: error: expected ‘)’ before ‘switch’
+Switch.cpp:79:41: error: expected ‘(’ before ‘.’ token
+         for(int j=0; j<connectedـswitch.size(); j++)
+                                         ^
+Switch.cpp:79:50: error: ‘j’ was not declared in this scope
+         for(int j=0; j<connectedـswitch.size(); j++)
+                                                  ^
+Switch.cpp: In member function ‘void Switch::update(Packet)’:
+Switch.cpp:95:9: error: expected unqualified-id before ‘[’ token
+     char[DATA_LEN] length;
+         ^
+Switch.cpp:96:15: error: ‘length’ was not declared in this scope
+     p.getData(length);
+               ^
+Switch.cpp: In member function ‘void Switch::pass_data(Packet)’:
+Switch.cpp:103:19: error: expected ‘)’ before ‘client’
+     if(connectedـclient.find(dest) != connectedـclient.end())
+                   ^
+Switch.cpp:103:63: error: could not convert ‘((Switch*)this)->Switch::connected’ from ‘std::vector<int>’ to ‘bool’
+     if(connectedـclient.find(dest) != connectedـclient.end())
+                                                               ^
+Switch.cpp:104:16: error: return-statement with a value, in function returning 'void' [-fpermissive]
+         return connectedـclient[dest];
+                ^
+Switch.cpp:104:27: error: expected ‘;’ before ‘client’
+         return connectedـclient[dest];
+                           ^
+Switch.cpp:104:27: error: ‘client’ was not declared in this scope
+Switch.cpp:105:8: error: ‘routing_table’ was not declared in this scope
+     if(routing_table.find(dest) != routing_table.end())
+        ^
+Switch.cpp: In member function ‘void Switch::accept_connection(Packet)’:
+Switch.cpp:117:19: error: no match for ‘operator<’ (operand types are ‘int’ and ‘std::vector<int>’)
+     for(int i=0; i<connectedـswitch.size(); i++)
+                   ^
+Switch.cpp:117:19: note: candidates are:
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_pair.h:220:5: note: template<class _T1, class _T2> constexpr bool std::operator<(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_pair.h:220:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::pair<_T1, _T2>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:298:5: note: template<class _Iterator> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator<(const reverse_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:298:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:348:5: note: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator<(const reverse_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:348:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:1072:5: note: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::move_iterator<_Iterator>&, const std::move_iterator<_IteratorR>&)
+     operator<(const move_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:1072:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::move_iterator<_Iterator>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:1078:5: note: template<class _Iterator> bool std::operator<(const std::move_iterator<_Iterator>&, const std::move_iterator<_Iterator>&)
+     operator<(const move_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:1078:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::move_iterator<_Iterator>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2588:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2588:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2600:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2600:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2612:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2612:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const _CharT*’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/vector:64:0,
+                 from ../libs/primary_header.h:5,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_vector.h:1528:5: note: template<class _Tp, class _Alloc> bool std::operator<(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_vector.h:1528:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::vector<_Tp, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:980:5: note: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator<(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator<(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:980:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/tuple:39:0,
+                 from /usr/include/c++/4.9/bits/stl_map.h:63,
+                 from /usr/include/c++/4.9/map:61,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/array:242:5: note: template<class _Tp, long unsigned int _Nm> bool std::operator<(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)
+     operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
+     ^
+/usr/include/c++/4.9/array:242:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::array<_Tp, _Nm>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_map.h:63:0,
+                 from /usr/include/c++/4.9/map:61,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/tuple:857:5: note: template<class ... _TElements, class ... _UElements> constexpr bool std::operator<(const std::tuple<_Args1 ...>&, const std::tuple<_Args2 ...>&)
+     operator<(const tuple<_TElements...>& __t,
+     ^
+/usr/include/c++/4.9/tuple:857:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::tuple<_Args1 ...>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/map:61:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_map.h:1017:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_map.h:1017:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::map<_Key, _Tp, _Compare, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/map:62:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_multimap.h:920:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multimap.h:920:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:844:5: note: template<class _Iterator, class _Container> bool __gnu_cxx::operator<(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)
+     operator<(const __normal_iterator<_Iterator, _Container>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:844:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const __gnu_cxx::__normal_iterator<_Iterator, _Container>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:837:5: note: template<class _IteratorL, class _IteratorR, class _Container> bool __gnu_cxx::operator<(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)
+     operator<(const __normal_iterator<_IteratorL, _Container>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:837:5: note:   template argument deduction/substitution failed:
+Switch.cpp:117:20: note:   mismatched types ‘const __gnu_cxx::__normal_iterator<_IteratorL, _Container>’ and ‘int’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                    ^
+Switch.cpp:117:31: error: expected ‘;’ before ‘switch’
+     for(int i=0; i<connectedـswitch.size(); i++)
+                               ^
+Switch.cpp:117:31: error: expected primary-expression before ‘switch’
+Switch.cpp:117:31: error: expected ‘)’ before ‘switch’
+Switch.cpp:117:37: error: expected ‘(’ before ‘.’ token
+     for(int i=0; i<connectedـswitch.size(); i++)
+                                     ^
+Switch.cpp:117:46: error: ‘i’ was not declared in this scope
+     for(int i=0; i<connectedـswitch.size(); i++)
+                                              ^
+Switch.cpp: In member function ‘void Switch::set_addr(Packet, sockaddr_in*)’:
+Switch.cpp:127:56: error: conversion from ‘std::vector<int>’ to non-scalar type ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ requested
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                        ^
+Switch.cpp:127:67: error: expected ‘;’ before ‘client’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                   ^
+Switch.cpp:127:67: error: ‘client’ was not declared in this scope
+Switch.cpp:127:85: error: no match for ‘operator!=’ (operand types are ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ and ‘std::vector<int>’)
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                     ^
+Switch.cpp:127:85: note: candidates are:
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:235:7: note: bool std::_Rb_tree_iterator<_Tp>::operator!=(const _Self&) const [with _Tp = std::pair<const std::bitset<128ul>, sockaddr_in*>; std::_Rb_tree_iterator<_Tp>::_Self = std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >]
+       operator!=(const _Self& __x) const _GLIBCXX_NOEXCEPT
+       ^
+/usr/include/c++/4.9/bits/stl_tree.h:235:7: note:   no known conversion for argument 1 from ‘std::vector<int>’ to ‘const _Self& {aka const std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >&}’
+In file included from /usr/include/c++/4.9/iosfwd:40:0,
+                 from /usr/include/c++/4.9/ios:38,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/postypes.h:221:5: note: template<class _StateT> bool std::operator!=(const std::fpos<_StateT>&, const std::fpos<_StateT>&)
+     operator!=(const fpos<_StateT>& __lhs, const fpos<_StateT>& __rhs)
+     ^
+/usr/include/c++/4.9/bits/postypes.h:221:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::fpos<_StateT>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_pair.h:227:5: note: template<class _T1, class _T2> constexpr bool std::operator!=(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator!=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_pair.h:227:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::pair<_T1, _T2>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:304:5: note: template<class _Iterator> bool std::operator!=(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator!=(const reverse_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:304:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:354:5: note: template<class _IteratorL, class _IteratorR> bool std::operator!=(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator!=(const reverse_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:354:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:1060:5: note: template<class _IteratorL, class _IteratorR> bool std::operator!=(const std::move_iterator<_Iterator>&, const std::move_iterator<_IteratorR>&)
+     operator!=(const move_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:1060:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::move_iterator<_Iterator>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:1066:5: note: template<class _Iterator> bool std::operator!=(const std::move_iterator<_Iterator>&, const std::move_iterator<_Iterator>&)
+     operator!=(const move_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:1066:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::move_iterator<_Iterator>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/string:41:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/allocator.h:138:5: note: template<class _T1, class _T2> bool std::operator!=(const std::allocator<_CharT>&, const std::allocator<_T2>&)
+     operator!=(const allocator<_T1>&, const allocator<_T2>&)
+     ^
+/usr/include/c++/4.9/bits/allocator.h:138:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::allocator<_CharT>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/string:41:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/allocator.h:143:5: note: template<class _Tp> bool std::operator!=(const std::allocator<_CharT>&, const std::allocator<_CharT>&)
+     operator!=(const allocator<_Tp>&, const allocator<_Tp>&)
+     ^
+/usr/include/c++/4.9/bits/allocator.h:143:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::allocator<_CharT>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2551:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator!=(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2551:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2563:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator!=(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator!=(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2563:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   mismatched types ‘const _CharT*’ and ‘std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2575:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator!=(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2575:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/bits/locale_facets.h:48:0,
+                 from /usr/include/c++/4.9/bits/basic_ios.h:37,
+                 from /usr/include/c++/4.9/ios:44,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/streambuf_iterator.h:210:5: note: template<class _CharT, class _Traits> bool std::operator!=(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&)
+     operator!=(const istreambuf_iterator<_CharT, _Traits>& __a,
+     ^
+/usr/include/c++/4.9/bits/streambuf_iterator.h:210:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::istreambuf_iterator<_CharT, _Traits>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/vector:64:0,
+                 from ../libs/primary_header.h:5,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_vector.h:1535:5: note: template<class _Tp, class _Alloc> bool std::operator!=(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator!=(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_vector.h:1535:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::vector<_Tp, _Alloc>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:329:5: note: template<class _Val> bool std::operator!=(const std::_Rb_tree_iterator<_Tp>&, const std::_Rb_tree_const_iterator<_Val>&)
+     operator!=(const _Rb_tree_iterator<_Val>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:329:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::vector<int>’ is not derived from ‘const std::_Rb_tree_const_iterator<_Val>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:990:5: note: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator!=(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator!=(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:990:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/tuple:39:0,
+                 from /usr/include/c++/4.9/bits/stl_map.h:63,
+                 from /usr/include/c++/4.9/map:61,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/array:237:5: note: template<class _Tp, long unsigned int _Nm> bool std::operator!=(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)
+     operator!=(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
+     ^
+/usr/include/c++/4.9/array:237:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::array<_Tp, _Nm>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/bits/stl_map.h:63:0,
+                 from /usr/include/c++/4.9/map:61,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/tuple:868:5: note: template<class ... _TElements, class ... _UElements> constexpr bool std::operator!=(const std::tuple<_Args1 ...>&, const std::tuple<_Args2 ...>&)
+     operator!=(const tuple<_TElements...>& __t,
+     ^
+/usr/include/c++/4.9/tuple:868:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::tuple<_Args1 ...>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/map:61:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_map.h:1024:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator!=(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator!=(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_map.h:1024:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::map<_Key, _Tp, _Compare, _Alloc>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/map:62:0,
+                 from ../libs/primary_header.h:13,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_multimap.h:927:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator!=(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator!=(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multimap.h:927:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/x86_64-linux-gnu/c++/4.9/bits/c++allocator.h:33:0,
+                 from /usr/include/c++/4.9/bits/allocator.h:46,
+                 from /usr/include/c++/4.9/string:41,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/ext/new_allocator.h:144:5: note: template<class _Tp> bool __gnu_cxx::operator!=(const __gnu_cxx::new_allocator<_Tp>&, const __gnu_cxx::new_allocator<_Tp>&)
+     operator!=(const new_allocator<_Tp>&, const new_allocator<_Tp>&)
+     ^
+/usr/include/c++/4.9/ext/new_allocator.h:144:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const __gnu_cxx::new_allocator<_Tp>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:829:5: note: template<class _Iterator, class _Container> bool __gnu_cxx::operator!=(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)
+     operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:829:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const __gnu_cxx::__normal_iterator<_Iterator, _Container>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:822:5: note: template<class _IteratorL, class _IteratorR, class _Container> bool __gnu_cxx::operator!=(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)
+     operator!=(const __normal_iterator<_IteratorL, _Container>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:822:5: note:   template argument deduction/substitution failed:
+Switch.cpp:127:87: note:   ‘std::map<std::bitset<128ul>, sockaddr_in*>::iterator {aka std::_Rb_tree_iterator<std::pair<const std::bitset<128ul>, sockaddr_in*> >}’ is not derived from ‘const __gnu_cxx::__normal_iterator<_IteratorL, _Container>’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                       ^
+Switch.cpp:127:98: error: expected ‘)’ before ‘client’
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                                  ^
+Switch.cpp:127:114: error: ‘it’ was not declared in this scope
+     for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
+                                                                                                                  ^
+Switch.cpp:132:16: error: expected ‘;’ before ‘client’
+     connectedـclient[addr] = from;
+                ^
+In file included from /usr/include/x86_64-linux-gnu/sys/types.h:219:0,
+                 from /usr/include/stdlib.h:314,
+                 from /usr/include/c++/4.9/cstdlib:72,
+                 from /usr/include/c++/4.9/ext/string_conversions.h:41,
+                 from /usr/include/c++/4.9/bits/basic_string.h:2850,
+                 from /usr/include/c++/4.9/string:52,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/ostream:38,
+                 from /usr/include/c++/4.9/iostream:39,
+                 from ../libs/primary_header.h:3,
+                 from Switch.h:3,
+                 from Switch.cpp:1:
+Switch.cpp: In member function ‘void Switch::run()’:
+Switch.cpp:174:34: error: ‘read_fds’ was not declared in this scope
+             if(FD_ISSET(STDIN , &read_fds))
+                                  ^
+Switch.cpp:193:17: error: expected ‘;’ before ‘parse_packet’
+                 parse_packet(p, &from);        
+                 ^
+make: *** [Switch.o] Error 1

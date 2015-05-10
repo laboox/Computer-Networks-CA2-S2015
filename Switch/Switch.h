@@ -14,6 +14,8 @@ class Switch
 {
 public:
 	Switch(int port);
+	~Switch();
+
 	void connect(int port);
 	void update_routing_table(address dest, int length, int port);
 	void update(Packet p);
@@ -22,8 +24,7 @@ public:
 	void set_addr(Packet p, struct sockaddr_in* from);
 	void parse_packet(Packet p, struct sockaddr_in* from);
 	void run();
-	~Switch();
-
+	
 private:
 	int port;
 	int sock;
