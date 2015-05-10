@@ -19,14 +19,19 @@
 
 #define STDIN 0
 
+#define MSG_LEN 72
+#define STDIN 0
+
 using namespace std;
 
 typedef pair<int, int> pii;
 
 class Exeption {
 private:
-    string error;
+	string error;
 public:
-    Exeption(string err): error(err) {};
-    string getErr() {return error;}
+	Exeption(string err): error(err) {};
+	string get_error() {return error;}
 };
+
+extern int unique_addr;
