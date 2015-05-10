@@ -8,15 +8,17 @@
 #include "primary_header.h"
 #include "crc.h"
 
-#define  ADDR_LEN 128
+#define ADDR_LEN 128
 #define DATA_LEN 23
-#define INIT_TTL 20
+#define INITIAL_TTL 20
 
 enum PacketType{
-    CONTROL,
+    UPDATE,
     SETADDR,
+    REQADDR,
     DATA,
-    CONNECT
+    CONNECT,
+    GET_SERVICES_LIST,
 };
 
 class Packet {
@@ -42,8 +44,10 @@ public:
     void getMessageByPacket ( char* );
     void getPacketByMessage ( char* );
 
-    Packet() {  }
-    Packet( char* ss ) { setPacketFromArray(ss); }
+    Packet();
+    Packet(char* ss);
+
+    void Packet::send(int sock, int port);
 private:
     bitset<16> type;
     bitset<128> dest;

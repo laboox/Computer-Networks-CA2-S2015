@@ -1,9 +1,15 @@
-/**
-* File "Packet.cpp"
-* Created by Sina on Thu May  7 18:41:24 2015.
-*/
-
 #include "Packet.h" 
+
+Packet::Packet()
+{
+    setTtl(INITIAL_TTL);
+}
+
+Packet(char* ss) 
+{ 
+    setTtl(INITIAL_TTL);
+    setPacketFromArray(ss); 
+}
 
 void Packet::setType(PacketType pt){
     type = bitset<16>(pt);
@@ -127,4 +133,22 @@ void Packet::setPacketFromArray ( char* pack ){
 void Packet::decTtl(){
     if(ttl.to_ulong()>0)
         ttl = bitset<32>(ttl.to_ulong()-1);
+}
+
+void Packet::send(int sock, int port)
+{
+    struct sockaddr_in to_sockadrr;
+    int tolen = sizeof(to_sockadrr);
+    bzero(&to, length);
+    
+    to_sockadrr.sin_family=AF_INET;
+    to_sockadrr.sin_addr.s_addr=INADDR_ANY;
+    to_sockadrr.sin_port=htons(port);
+    
+    char msg[MSG_LEN];
+    this->getMessageByPacket(msg);
+
+    int n=sendto(sock, msg, MSG_LEN, 0, (struct sockaddr *)&to_sockadrr, tolen);
+    if(n<0) 
+        throw Exeption("Error in sendto");
 }
