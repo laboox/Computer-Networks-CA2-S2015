@@ -8,6 +8,7 @@
 int main (){
     string command;
     ServiceManager sm;
+    try{
     while (cin>>command) {
         if(command == "Connect" && cin>>command && command=="Server"){
             int port;
@@ -18,7 +19,11 @@ int main (){
             break;
         }
         else{
-            cout << "Invalid command";
+            cout << "Invalid command\n";
         }
+    }
+    }
+    catch(Exeption ex){
+        cout<<ex.getErr()<<endl;
     }
 }

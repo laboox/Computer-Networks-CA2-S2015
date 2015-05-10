@@ -36,6 +36,8 @@ void ServerManager::run() {
             FD_SET(STDIN, &fdset);
             FD_SET(sockSW, &fdset);
             FD_SET(sockSP, &fdset);
+            struct sockaddr_in SP_sockadrr;
+
             if(select(max(sockSW,sockSP)+1, &fdset, NULL, NULL, NULL) < 0)
                 throw Exeption("Error in sockets select");
             if(FD_ISSET(STDIN , &fdset))
@@ -67,9 +69,7 @@ void ServerManager::run() {
             {
                 cout<<"a packet coming from Service Provider.\n";
                 Packet p;
-                struct sockaddr_in from_sockadrr;
-                socklen_t fromlen = sizeof(struct sockaddr_in);
-                p.recive(sockSP, (struct sockaddr*)&from_sockadrr, &fromlen);
+                p.recive(sockSP, &SP_sockadrr);
                 if(p.getType()==SETUPSERVICE){
                     cout<<"service provider connected.\n";
                 }

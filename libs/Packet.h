@@ -18,7 +18,7 @@
 #include "primary_header.h"
 
 
-#define  ADDR_LEN 128
+#define ADDR_LEN 128
 #define DATA_LEN 23
 #define INIT_TTL 20
 #define MSG_LEN 72
@@ -61,7 +61,9 @@ public:
     void recive(int sock, struct sockaddr_in* from_sockadrr);
 
     Packet();
-    Packet( char* ss );
+    Packet(char* ss);
+
+    void Packet::send(int sock, int port);
 private:
     bitset<16> type;
     bitset<128> dest;

@@ -27,6 +27,7 @@ public:
     void connectServer();
 private:
     bitset<ADDR_LEN> address;
+    int port;
     struct sockaddr_in server;
     int sock;
 };

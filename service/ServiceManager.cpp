@@ -9,13 +9,14 @@ void ServiceManager::sendFile(string path, string addr){
 }
 
 void ServiceManager::run(){
-    
+    while(true);
 }
 
 void ServiceManager::init(int portnum){
-   int sock, n;
+   port = portnum;
+   int n;
    unsigned int length;
-   struct sockaddr_in server, from;
+   struct sockaddr_in from;
    struct hostent *hp;
    sock= socket(AF_INET, SOCK_DGRAM, 0);
    if (sock < 0) Exeption("build sock error!");
@@ -32,9 +33,8 @@ void ServiceManager::init(int portnum){
 }
 
 void ServiceManager::connectServer(){
-    int sock;
     Packet p;
     p.setType(SETUPSERVICE);
-    p.send(sock);
+    p.send(sock, port);
     return;
 }
