@@ -8,5 +8,11 @@
 #include "primary_header.h"
 #include "Packet.h"
 
+void sendFrame(const char* data, int count, address source, address dest, int sock, int port);
 
-void sendFrame(const char* data, int count, bitset<ADDR_LEN> source, bitset<ADDR_LEN> dest);
+void sendFrame(const char* data, int count, address source, address dest, int sock, 
+    struct sockaddr_in* go);
+
+void reciveFrame( char* data, int sock, struct sockaddr_in* from );
+
+void reciveFrame( char* data, int sock, int port ); 

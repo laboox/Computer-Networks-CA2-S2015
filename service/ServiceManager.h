@@ -27,9 +27,9 @@ public:
     void connectServer();
     string getList();
 private:
-    bitset<ADDR_LEN> address;
     int port;
     struct sockaddr_in server;
     int sock;
     string path;
+    address source;
 };

@@ -5,7 +5,11 @@
 
 #include "ServiceManager.h"
 
-void ServiceManager::sendFile(string path, string addr){
+void ServiceManager::sendFile(string file, string addr){
+    std::ifstream t(path+"/"+file);
+    std::string str((std::istreambuf_iterator<char>(t)),
+                 std::istreambuf_iterator<char>());
+    
 }
 
 void ServiceManager::run(){
@@ -16,6 +20,7 @@ void ServiceManager::run(){
         if(inp.getType()==GET_SERVICES_LIST){
             string list = getList();
             inp.setData(list);
+            inp.setSource(source);
             inp.send(sock, &from);
         }
     }
@@ -23,6 +28,7 @@ void ServiceManager::run(){
 
 void ServiceManager::init(int portnum, string path){
    this->path = path;
+   source = path[0] - 'A';
    port = portnum;
    int n;
    unsigned int length;
@@ -44,6 +50,7 @@ void ServiceManager::init(int portnum, string path){
 void ServiceManager::connectServer(){
     Packet p;
     p.setType(SETUPSERVICE);
+    p.setSource(source);
     p.setData(path);
     p.send(sock, port);
     return;

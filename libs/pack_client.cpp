@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "Packet.h"
+#include "Framer.h"
 
 void error(const char *);
 int main(int argc, char *argv[])

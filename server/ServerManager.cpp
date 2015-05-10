@@ -72,6 +72,7 @@ void ServerManager::run() {
                  p.recive(sockSW, &SW_sockadrr);
                  if(p.getType()==GET_SERVICES_LIST){
                     //TODO
+                    string services=getAllServiceList();
                  }
             }
             else if (FD_ISSET(sockSP , &fdset))  
@@ -104,13 +105,14 @@ string ServerManager::getServiceList(struct sockaddr_in sp){
     Packet info;
     info.recive(sockSP, &from);
     info.getData(buf);
+    cout<<"from "<<info.getSource().to_ulong()+'A'<<" cames "<<buf<<endl;
     return buf;
 }
 
 string ServerManager::getAllServiceList(){
     string servlist;
     for(int i=0;i<services.size();i++){
-        servlist = getServiceList(services[i]);
+        servlist += getServiceList(services[i]);
     }
     return servlist;
 }
