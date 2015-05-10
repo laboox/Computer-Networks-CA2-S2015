@@ -1,16 +1,5 @@
 #include "Packet.h" 
 
-Packet::Packet()
-{
-    setTtl(INITIAL_TTL);
-}
-
-Packet(char* ss) 
-{ 
-    setTtl(INITIAL_TTL);
-    setPacketFromArray(ss); 
-}
-
 void Packet::setType(PacketType pt){
     type = bitset<16>(pt);
 }
@@ -154,7 +143,7 @@ void Packet::send(int sock, int port)
     
     putCrc();
 
-    bzero(&to, length);
+    bzero(&to_sockadrr, tolen);
     
     to_sockadrr.sin_family=AF_INET;
     to_sockadrr.sin_addr.s_addr=INADDR_ANY;

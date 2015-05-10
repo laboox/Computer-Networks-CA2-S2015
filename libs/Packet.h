@@ -62,8 +62,6 @@ public:
 
     Packet();
     Packet(char* ss);
-
-    void Packet::send(int sock, int port);
 private:
     bitset<16> type;
     bitset<128> dest;
