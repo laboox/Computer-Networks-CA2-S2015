@@ -24,6 +24,6 @@ int main (){
     }
     }
     catch(Exeption ex){
-        cout<<ex.getErr()<<endl;
+        cout<<ex.get_error()<<endl;
     }
 }
