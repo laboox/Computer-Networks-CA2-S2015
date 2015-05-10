@@ -16,6 +16,8 @@
 #include <bitset>
 #include <cctype>
 #include <cstdint>
+#include <cstdio>
+#include <dirent.h>
 
 #define STDIN 0
 

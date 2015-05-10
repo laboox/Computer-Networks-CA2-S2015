@@ -5,15 +5,19 @@
 
 #include "ServiceManager.h"
 
-int main (){
+int main (int argc, char *argv[]){
     string command;
     ServiceManager sm;
+    if(argc<2){
+        cout<<"Usage: ./Service_Provider.out #SERVICE_PATH.\n";
+        exit(0);
+    }
     try{
     while (cin>>command) {
         if(command == "Connect" && cin>>command && command=="Server"){
             int port;
             cin>>port;
-            sm.init(port);
+            sm.init(port, argv[1]);
             sm.connectServer();
             sm.run();
             break;

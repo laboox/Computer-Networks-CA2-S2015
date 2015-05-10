@@ -4,12 +4,17 @@ void Packet::setType(PacketType pt){
     type = bitset<16>(pt);
 }
 
-void Packet::setData(char data[23], unsigned int size){
+void Packet::setData(const char data[23], unsigned int size){
     length = bitset<40>(size);
     this->data.reset();
     for ( int i=0; i< size*8; i++ ) {
         this->data[i] = data[i/8] & 1<<(i%8);
     }
+}
+
+void Packet::setData(string data){
+    length = bitset<40>(data.size()+1);
+    setData(data.c_str(), data.size()+1);
 }
 
 int Packet::getData(char* data){
@@ -18,6 +23,12 @@ int Packet::getData(char* data){
     for ( int i=0; i< size*8; i++ ) {
         data[i/8] |= (this->data[i])<<(i%8);
     }
+}
+
+string Packet::getDataStr(){
+    char cdata[DATA_LEN] = {0};
+    getData(cdata);
+    return cdata;
 }
 
 void Packet::putCrc() {

@@ -23,11 +23,13 @@ class ServiceManager {
 public:
     void sendFile(string ,string);
     void run();
-    void init(int);
+    void init(int, string);
     void connectServer();
+    string getList();
 private:
     bitset<ADDR_LEN> address;
     int port;
     struct sockaddr_in server;
     int sock;
+    string path;
 };

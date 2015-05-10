@@ -23,6 +23,8 @@
 #define INIT_TTL 20
 #define MSG_LEN 72
 
+typedef bitset<ADDR_LEN> address;
+
 enum PacketType{
     UPDATE,
     SETADDR,
@@ -30,6 +32,7 @@ enum PacketType{
     DATA,
     CONNECT,
     SETUPSERVICE,
+    ERROR,
     GET_SERVICES_LIST
 };
 
@@ -39,13 +42,15 @@ public:
     void setDest(bitset<128> dest) { this->dest = dest; }
     void setSource(bitset<128> source) { this->source = source; }
     void setTtl(unsigned int ttl) { this->ttl = bitset<32>(ttl); }
-    void setData(char data[23], unsigned int); 
+    void setData(const char data[23], unsigned int); 
+    void setData(string data);
     PacketType getType() { return (PacketType)type.to_ulong(); }
     bitset<128> getDest() { return dest; }
     bitset<128> getSource() { return source; }
     unsigned int getTtl() { return ttl.to_ulong(); }
     unsigned int getLength() { return length.to_ulong(); }
     int getData(char*);
+    string getDataStr();
     void decTtl();
 
     void putCrc();

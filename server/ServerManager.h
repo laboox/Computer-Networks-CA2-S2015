@@ -13,8 +13,13 @@ public:
    ServerManager(int port); 
    void run();
    void connect(int port);
+   void sendError(string ,address);
+   string getServiceList(struct sockaddr_in);
+   string getAllServiceList();
 private:
     int sockSW;
     int sockSP;
     int port;
+    vector<struct sockaddr_in> services;
+    map<char, struct sockaddr_in*> toService;
 };

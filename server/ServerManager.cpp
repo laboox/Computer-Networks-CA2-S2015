@@ -37,6 +37,7 @@ void ServerManager::run() {
             FD_SET(sockSW, &fdset);
             FD_SET(sockSP, &fdset);
             struct sockaddr_in SP_sockadrr;
+            struct sockaddr_in SW_sockadrr;
 
             if(select(max(sockSW,sockSP)+1, &fdset, NULL, NULL, NULL) < 0)
                 throw Exeption("Error in sockets select");
@@ -58,12 +59,20 @@ void ServerManager::run() {
                         p.getPacketByteArray(msg);
                     }*/
                 }
+                else if(cmd == "getlist"){
+                    cout<<"getting services list from.\n";
+                    cout<<getAllServiceList();
+                }
                 else
-                    ("Invalid Command\nUsage: Connect Switch [#Switch Port Number]");  
+                    ("Invalid Command\nUsage: Connect Switch [#Switch Port Number]");
             }
-            else if (FD_ISSET(sockSW , &fdset))  
+            else if (FD_ISSET(sockSW , &fdset))
             {
-                 
+                 Packet p;
+                 p.recive(sockSW, &SW_sockadrr);
+                 if(p.getType()==GET_SERVICES_LIST){
+                    //TODO
+                 }
             }
             else if (FD_ISSET(sockSP , &fdset))  
             {
@@ -71,6 +80,8 @@ void ServerManager::run() {
                 Packet p;
                 p.recive(sockSP, &SP_sockadrr);
                 if(p.getType()==SETUPSERVICE){
+                    services.push_back(SP_sockadrr);
+                    toService[p.getDataStr()[0]] = &(services[services.size()-1]);
                     cout<<"service provider connected.\n";
                 }
             }
@@ -82,4 +93,27 @@ void ServerManager::run() {
 }
 
 void ServerManager::connect(int port){
+}
+
+string ServerManager::getServiceList(struct sockaddr_in sp){
+    struct sockaddr_in from;
+    char buf[DATA_LEN]={0};
+    Packet p;
+    p.setType(GET_SERVICES_LIST);
+    p.send(sockSP, &sp);
+    Packet info;
+    info.recive(sockSP, &from);
+    info.getData(buf);
+    return buf;
+}
+
+string ServerManager::getAllServiceList(){
+    string servlist;
+    for(int i=0;i<services.size();i++){
+        servlist = getServiceList(services[i]);
+    }
+    return servlist;
+}
+
+void ServerManager::sendError(string message, address dest){
 }

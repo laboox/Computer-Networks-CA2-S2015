@@ -9,14 +9,23 @@ void ServiceManager::sendFile(string path, string addr){
 }
 
 void ServiceManager::run(){
-    while(true);
+    struct sockaddr_in from;
+    while(true){
+        Packet inp;
+        inp.recive(sock, &from);
+        if(inp.getType()==GET_SERVICES_LIST){
+            string list = getList();
+            inp.setData(list);
+            inp.send(sock, &from);
+        }
+    }
 }
 
-void ServiceManager::init(int portnum){
+void ServiceManager::init(int portnum, string path){
+   this->path = path;
    port = portnum;
    int n;
    unsigned int length;
-   struct sockaddr_in from;
    struct hostent *hp;
    sock= socket(AF_INET, SOCK_DGRAM, 0);
    if (sock < 0) Exeption("build sock error!");
@@ -35,6 +44,27 @@ void ServiceManager::init(int portnum){
 void ServiceManager::connectServer(){
     Packet p;
     p.setType(SETUPSERVICE);
+    p.setData(path);
     p.send(sock, port);
     return;
+}
+
+string ServiceManager::getList(){
+    string ret;
+    DIR *dir;
+    struct dirent *ent;
+    if ((dir = opendir (path.c_str())) != NULL) {
+      /* print all the files and directories within directory */
+      while ((ent = readdir (dir)) != NULL) {
+        string filename = ent->d_name;
+        if(filename != "." && filename!=".."){
+            ret+=ent->d_name;
+            ret+="\n";
+        }
+    }
+    closedir (dir);
+    return ret;
+    } else {
+      throw Exeption("failed to load directory!\n");
+    }
 }
