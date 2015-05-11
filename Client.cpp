@@ -42,7 +42,7 @@ void Client::connect(int port)
 	int length=sizeof(struct sockaddr_in);
 
 	Packet p;
-	p.setType(REQADDR);
+	p.setType(REQ_ADDR);
 	p.send(sock, port);
 	this->port=port;
 
@@ -51,10 +51,19 @@ void Client::connect(int port)
 
 void Client::logout()
 {
+
+	//bayad ye khabar be switch i ke besh vaslam bedam ke mano az to list e connect ha behesh pak kone
 	if(! is_login())
 		throw Exeption("You were logout before");
+	
 	username="";
 	password="";
+
+	Packet p;
+	p.setType(DISCONNECT);
+	p.setSource(addr);
+	send(p. port);
+
 	close(sock);
 
 	cout<<"User "<<username<<"logout successfully"<<endl;
@@ -173,7 +182,7 @@ void Client::parse_cmd(string cmd)
 }
 
 
-void Client::parse_packet(Packet p, const struct sockaddr_in* from)
+void Client::parse_packet(Packet p)
 {
 	if(p.getTtl()==0) return;
 	if(p.getType()==SET_ADDR)
@@ -212,7 +221,7 @@ void Client::run()
                 struct sockaddr_in from_sockadrr;
                 Packet p;
                 p.recive(sock, &from_sockadrr)
-                parse_packet(p, from_sockadrr->sin_port);       
+                parse_packet(p);       
             }
         }
         catch(Exeption ex)

@@ -25,10 +25,11 @@
 
 enum PacketType{
     UPDATE,
-    SETADDR,
-    REQADDR,
+    SET_ADDR,
+    REQ_ADDR,
     DATA,
     CONNECT,
+    DISCONNECT,
     SETUPSERVICE,
     GET_SERVICES_LIST
 };
@@ -36,13 +37,13 @@ enum PacketType{
 class Packet {
 public:
     void setType(PacketType);
-    void setDest(bitset<128> dest) { this->dest = dest; }
-    void setSource(bitset<128> source) { this->source = source; }
+    void setDest(address dest) { this->dest = dest; }
+    void setSource(address source) { this->source = source; }
     void setTtl(unsigned int ttl) { this->ttl = bitset<32>(ttl); }
-    void setData(char data[23], unsigned int); 
+    void setData(const char data[23], unsigned int); 
     PacketType getType() { return (PacketType)type.to_ulong(); }
-    bitset<128> getDest() { return dest; }
-    bitset<128> getSource() { return source; }
+    address getDest() { return dest; }
+    address getSource() { return source; }
     unsigned int getTtl() { return ttl.to_ulong(); }
     unsigned int getLength() { return length.to_ulong(); }
     int getData(char*);

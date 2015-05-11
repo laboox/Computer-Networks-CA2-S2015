@@ -4,7 +4,7 @@ void Packet::setType(PacketType pt){
     type = bitset<16>(pt);
 }
 
-void Packet::setData(char data[23], unsigned int size){
+void Packet::setData(const char data[23], unsigned int size){
     length = bitset<40>(size);
     this->data.reset();
     for ( int i=0; i< size*8; i++ ) {

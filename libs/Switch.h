@@ -7,21 +7,27 @@
 #define PORT first
 #define LEN second
 
+typedef pair<struct sockaddr_in, int> route_data;
+
 
 class Switch
 {
 public:
 	Switch(int port);
-	void run();
-	void update_routing_table(bitset<ADDR_LEN> dest, int length, const struct sockaddr_in* from);
-	void parse_msg(char* msg, const struct sockaddr_in* from);
 	void connect(int port);
+	void update_routing_table(address dest, int length, int port);
+	void update(Packet p);
+	void pass_data(Packet p);
+	void accept_connection(Packet p);
+	void set_addr(Packet p, struct sockaddr_in* from);
+	void parse_packet(Packet p, struct sockaddr_in* from);
+	void run();
 	~Switch();
 
 private:
 	int port;
 	int sock;
-	map<bitset<ADDR_SIZE>, pii> routing_table; 
+	map<address, pii> routing_table; 
+	map<address, struct sockaddr_in*> connectedـclient; 
 	vector<int> connectedـswitch;
-	vector<int> connectedـclient;
 };
