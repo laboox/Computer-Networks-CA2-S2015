@@ -23,6 +23,7 @@ int Packet::getData(char* data){
     for ( int i=0; i< size*8; i++ ) {
         data[i/8] |= (this->data[i])<<(i%8);
     }
+    return size;
 }
 
 string Packet::getDataStr(){

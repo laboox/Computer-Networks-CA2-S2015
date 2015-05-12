@@ -5,6 +5,13 @@
 
 #include "Framer.h"
 
+string readAllFile(string path){
+    std::ifstream t(path);
+    std::string str((std::istreambuf_iterator<char>(t)),
+                 std::istreambuf_iterator<char>());
+    return str;
+}
+
 void sendFrame(char* data, int count, address source, address dest, int sock, int port){
     int base=0;
     unsigned char packetNumber=0;
@@ -53,8 +60,8 @@ void sendFrame(char* data, int count, address source, address dest, int sock,
         if(count-base>DATA_LEN-1){
             inPacketData[0] = packetNumber;
             char* startOfData = inPacketData+1;
-            memcpy(startOfData, first, DATA_LEN);
-            p.setData(first, DATA_LEN);
+            memcpy(startOfData, first, DATA_LEN-1);
+            p.setData(inPacketData, DATA_LEN);
             p.putCrc();
             first+=DATA_LEN-1;
             base+=DATA_LEN-1;
@@ -62,13 +69,14 @@ void sendFrame(char* data, int count, address source, address dest, int sock,
         else {
             inPacketData[0] = packetNumber;
             char* startOfData = inPacketData+1;
-            memcpy(startOfData, first, count-base );
-            p.setData(first, count-base);
+            memcpy(startOfData, first, count-base+1);
+            p.setData(inPacketData, count-base + 1);
             p.putCrc();
             first+=count-base;
             base+=count-base;
         }
         p.send(sock, go);
+        packetNumber++;
     }
 }
 
@@ -89,6 +97,7 @@ void reciveFrame( char* data, int sock, struct sockaddr_in* from ) {
         first += n-1;
         if(n<DATA_LEN)
             break;
+        count++;
     }
 }
 

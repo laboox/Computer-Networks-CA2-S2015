@@ -24,6 +24,8 @@
 #define MSG_LEN 72
 #define STDIN 0
 
+#define SERVER_ADDR 1000
+
 using namespace std;
 
 typedef pair<int, int> pii;

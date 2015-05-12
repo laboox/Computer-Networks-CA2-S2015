@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     socklen_t fromlen;
     struct sockaddr_in server;
     struct sockaddr_in from;
-    char buf[1024];
+    char buf[4096];
 
     if (argc < 2) {
       fprintf(stderr, "ERROR, no port provided\n");
@@ -42,13 +42,18 @@ int main(int argc, char *argv[])
     if (bind(sock,(struct sockaddr *)&server,length)<0) 
        error("binding");
     fromlen = sizeof(struct sockaddr_in);
+
     try{
     while (1) {
-       Packet p;
+       reciveFrame(buf, sock, &from);
+       cout<<buf;
+        
+       /*Packet p;
        p.recive(sock, &from);
+       cout<<p.getDataStr();
        p.send(sock, &from);
        cout<<"packet recived!\n";
-       /*n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
+       n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
        if (n < 0) error("recvfrom");
        write(1,"Received a datagram: ",21);
        write(1,buf,n);
@@ -58,7 +63,7 @@ int main(int argc, char *argv[])
     }
     }
     catch (Exeption ex){
-        cout<< ex.getErr();
+        cout<< ex.get_error();
     }
     return 0;
  }

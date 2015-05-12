@@ -36,7 +36,20 @@ int main(int argc, char *argv[])
    server.sin_port = htons(atoi(argv[2]));
    length=sizeof(struct sockaddr_in);
    cout<<"connecting sock!\n";
-   Packet p;
+   
+   string file = readAllFile("1.txt");
+
+   cout<<"file: "<<file<<endl;
+   
+   char* filep= (char*)malloc((file.size()+1)*sizeof(char));
+   
+   memcpy(filep, file.c_str(), file.size()+1);
+
+   cout<<"try to send "<<filep<<endl;
+
+   sendFrame(filep, file.size()+1, address(0), address(0), sock, &server);
+      
+   /*Packet p;
    p.setData("salam", 6);
    p.send(sock, atoi(argv[2]));
    p.recive(sock, &from);
@@ -44,7 +57,7 @@ int main(int argc, char *argv[])
    p.getData(buffer);
    cout<<buffer<<endl;
 
-   /*printf("Please enter the message: ");
+   printf("Please enter the message: ");
    bzero(buffer,256);
    fgets(buffer,255,stdin);
    n=send(sock,buffer,
