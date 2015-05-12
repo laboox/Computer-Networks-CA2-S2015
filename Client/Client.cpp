@@ -79,6 +79,7 @@ void Client::get_list_of_services()
     Packet p;
 	p.setType(GET_SERVICES_LIST);
 	p.setSource(addr);
+    p.setDest(address(SERVER_ADDR));
 	p.send(sock, port);
 }
 
@@ -97,6 +98,7 @@ void Client::request(string service_name, string access_type)
     p.setType(access_type=="read"? REQ_READ : REQ_WRITE);
     p.setData(service_name.c_str(), service_name.size()+1); 
     p.setSource(addr);
+    p.setDest(address(SERVER_ADDR));
 	p.send(sock, port);
 }
 
@@ -194,7 +196,7 @@ void Client::parse_packet(Packet p)
 	}
 	else if(p.getType()==DATA)
 	{
-
+        
 	}
 }
 

@@ -71,8 +71,12 @@ void ServerManager::run() {
                  Packet p;
                  p.recive(sockSW, &SW_sockadrr);
                  if(p.getType()==GET_SERVICES_LIST){
-                    //TODO
                     string services=getAllServiceList();
+                    Packet res;
+                    res.setSource(p.getDest());
+                    res.setDest(p.getSource());
+                    res.setData(services);
+                    res.send(sockSW, &SW_sockaddr);
                  }
             }
             else if (FD_ISSET(sockSP , &fdset))  

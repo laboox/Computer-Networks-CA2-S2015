@@ -1,0 +1,4 @@
+Sina A1.txt Read
+Sina A1.txt Write
+Aida A2.txt Read
+Aida A2.txt Write
