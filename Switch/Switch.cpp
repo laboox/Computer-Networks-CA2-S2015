@@ -19,10 +19,9 @@ Switch::Switch(int port)
         throw Exeption("Binding Error");
     
     this->port=port;
+    unique_addr=port*100;
 
     cout<<"Switch bind on port "<<port<<endl;
-
-    unique_addr=0;
 }
 
 string itoa(int n)
@@ -72,6 +71,7 @@ void Switch::disconnect(Packet p)
     if(connected_client.find(clinet_addr) == connected_client.end())
       throw Exeption("Error: User "+clinet_addr+"is not in connected list");
     connected_client.erase(connected_client.find(clinet_addr));
+    cout << "Client "<<clinet_addr<<" disconnect"<<endl;
 }
 
 void Switch::update_routing_table(string dest, int length, int port)
@@ -106,7 +106,7 @@ void Switch::pass_data(Packet p)
 {
     string dest = p.getDest().to_string();
     if(connected_client.find(dest) != connected_client.end())
-        p.send(sock, connected_client[dest]);
+        p.send(sock, &connected_client[dest]);
     else if(routing_table.find(dest) != routing_table.end())
     {
         p.setTtl(p.getTtl()-1);
@@ -126,30 +126,27 @@ void Switch::accept_connection(Packet p)
     cout<<"I accept connection of a switch on port "<<sender_port<<endl;
 }
 
-void Switch::set_addr(Packet p, struct sockaddr_in* from)
+void Switch::set_addr(Packet p, struct sockaddr_in from)
 {
-    cerr<<"I want to set address"<<endl;    
-    for(map<string, struct sockaddr_in*>::iterator it=connected_client.begin(); it!=connected_client.end(); it++)
-        if(it->second==from)
+    for(map<string, struct sockaddr_in>::iterator it=connected_client.begin(); it!=connected_client.end(); it++)
+        if(memcmp(&(it->second), &from, sizeof(from)))
             throw Exeption("I recive a REQ_ADDR packet from a client whitch I connected before");
 
-    string addr = itoa(++unique_addr);
-    sh(unique_addr);
+    string addr=address(++unique_addr).to_string();
     connected_client[addr]=from;
 
     p.setSource(address(this->port));
-    sh(addr);
     p.setDest(address(addr));
     p.setType(SET_ADDR);
     p.setTtl(p.getTtl()-1);
-    p.send(sock, from);
+    p.send(sock, &from);
 
+    update_routing_table(addr, 0, port);
     cout<<"I set address for clinet "<<addr<<endl;
 }
 
-void Switch::parse_packet(Packet p, struct sockaddr_in* from)
+void Switch::parse_packet(Packet p, struct sockaddr_in from)
 {
-    cerr<<"I recive a packet and I want to parse"<<endl;
     if(p.getTtl()==0) 
         return;
     if(p.getType()==UPDATE)
@@ -178,13 +175,10 @@ void Switch::run()
 
         try
         {
-            //cerr<<"try"<<endl;
             if(select(sock+1, &fdset, NULL, NULL, NULL)<0)
                 throw Exeption("Error in sockets select");
-            //cerr<<"if checked";
             if(FD_ISSET(STDIN , &fdset))
             {
-                //cerr<<"stdin"<<endl;
                 string cmd, param1, param2;
                 int connected_port;
                 getline(cin, cmd);
@@ -199,11 +193,10 @@ void Switch::run()
             }
             else if (FD_ISSET(  sock , &fdset))  
             {
-                //cerr<<"packet"<<endl;
                 struct sockaddr_in from;
                 Packet p;
                 p.recive(sock, &from);
-                parse_packet(p, &from);        
+                parse_packet(p, from);        
             }
         }
         catch(Exeption ex)
