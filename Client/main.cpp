@@ -2,6 +2,6 @@
 
 int main()
 {
-	Client client();
+	Client client;
 	client.run();
 }

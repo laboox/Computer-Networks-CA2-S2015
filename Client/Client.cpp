@@ -1,5 +1,6 @@
 #include "Client.h"
 
+
 bool Client::is_login()
 {
 	return username!="" and password!="";
@@ -22,6 +23,7 @@ void Client::login(string username, string password)
 
 void Client::connect(int port)
 {
+	cerr<<"I eneter connect "<<endl;
 	if(! is_login())
 		throw Exeption("You must login at first");
 	if(is_connected())
@@ -34,7 +36,7 @@ void Client::connect(int port)
 	struct hostent *hp;
 	hp=gethostbyname("localhost");
 	if(hp==0)
-		throw Exeption("Unknown host")
+		throw Exeption("Unknown host");
 
 	sw.sin_family=AF_INET;
 	bcopy((char *)hp->h_addr, (char *)&sw.sin_addr, hp->h_length);
@@ -51,8 +53,6 @@ void Client::connect(int port)
 
 void Client::logout()
 {
-
-	//bayad ye khabar be switch i ke besh vaslam bedam ke mano az to list e connect ha behesh pak kone
 	if(! is_login())
 		throw Exeption("You were logout before");
 	
@@ -62,7 +62,7 @@ void Client::logout()
 	Packet p;
 	p.setType(DISCONNECT);
 	p.setSource(addr);
-	send(p. port);
+	p.send(sock, port);
 
 	close(sock);
 
@@ -77,7 +77,7 @@ void Client::get_list_of_services()
 		throw Exeption("You must connect at first");
 
     Packet p;
-	p.setType("GET_SERVICES_LIST");
+	p.setType(GET_SERVICES_LIST);
 	p.setSource(addr);
 	p.send(sock, port);
 }
@@ -94,7 +94,7 @@ void Client::request(string service_name, string access_type)
     	throw Exeption("Invalid access type");
 
     Packet p;
-    p.setType(access_type=="read"?"REQ_READ":"REQ_WRITE");
+    p.setType(access_type=="read"? REQ_READ : REQ_WRITE);
     p.setData(service_name.c_str(), service_name.size()+1); 
     p.setSource(addr);
 	p.send(sock, port);
@@ -187,8 +187,9 @@ void Client::parse_packet(Packet p)
 	if(p.getTtl()==0) return;
 	if(p.getType()==SET_ADDR)
 	{
+		//check lator
 		if(addr!=NULL)
-			throw Exeption("I have addresse but I get SET_ADDR packet")
+			throw Exeption("I have addresse but I get SET_ADDR packet");
 		addr=p.getDest();
 	}
 	else if(p.getType()==DATA)
@@ -201,26 +202,27 @@ void Client::parse_packet(Packet p)
 void Client::run()
 {
     fd_set fdset;
-    FD_ZERO(&fdset);
-    FD_SET(STDIN, &fdset);
-    FD_SET(sock, &fdset);
     while(true)
     {
+        FD_ZERO(&fdset);
+    	FD_SET(STDIN, &fdset);
+    	FD_SET(sock, &fdset);
+
         try
         {
             if(select(sock+1, &fdset, NULL, NULL, NULL) < 0)
                 throw Exeption("Error in sockets select");
-            if(FD_ISSET(STDIN , &read_fds))
+            if(FD_ISSET(STDIN , &fdset))
             {
                 string cmd;
                 getline(cin, cmd);
             	parse_cmd(cmd);
             }
-            else if (FD_ISSET(sock , &read_fds))  
+            else if (FD_ISSET(sock , &fdset))  
             {
                 struct sockaddr_in from_sockadrr;
                 Packet p;
-                p.recive(sock, &from_sockadrr)
+                p.recive(sock, &from_sockadrr);
                 parse_packet(p);       
             }
         }
@@ -229,10 +231,4 @@ void Client::run()
             cout << ex.get_error() << endl;
         }
     }
-}
-
-int main()
-{
-	Client client();
-	client.run();
 }
