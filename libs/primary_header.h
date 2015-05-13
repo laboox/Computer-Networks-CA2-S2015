@@ -19,6 +19,8 @@
 #include <cstdio>
 #include <dirent.h>
 
+#define sh(x) cerr<<#x<<" = "<<x<<endl;
+
 #define STDIN 0
 
 #define MSG_LEN 72

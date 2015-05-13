@@ -7,6 +7,8 @@ main.o: main.cpp Switch.o
 	$(CC) $(CFLAGS) -c main.cpp
 Switch.o: Switch.cpp Switch.h
 	$(CC) $(CFLAGS) -c Switch.cpp
+Switch.o: Switch.cpp Switch.h
+	$(CC) $(CFLAGS) -c Switch.cpp
 	
 clean:
 	rm *.o *.out

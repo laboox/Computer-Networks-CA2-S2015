@@ -34,7 +34,9 @@ enum PacketType{
     DISCONNECT,
     SETUPSERVICE,
     ERROR,
-    GET_SERVICES_LIST
+    GET_SERVICES_LIST,
+    REQ_READ,
+    REQ_WRITE
 };
 
 class Packet {

@@ -1,5 +1,6 @@
 #include "Switch.h"
 
+
 Switch::Switch(int port)
 {
     sock=socket(AF_INET, SOCK_DGRAM, 0);
@@ -18,6 +19,10 @@ Switch::Switch(int port)
         throw Exeption("Binding Error");
     
     this->port=port;
+
+    cout<<"Switch bind on port "<<port<<endl;
+
+    unique_addr=0;
 }
 
 string itoa(int n)
@@ -32,77 +37,77 @@ string itoa(int n)
     return s;
 }   
 
-
 void Switch::connect(int port)
 {
     if(this->port == port)
         throw Exeption("You can't connect yourself");
-    for(int i=0; i<connectedـswitch; i++)
-        if(connectedـswitch[i]==port)
-            throw Exeption("You were connected to this port before");
-
-    for(map<address, pii>::iterator it=routing_table.begin(); it!=routing_table.end(); ++it)
+    for(int i=0; i<connected_switch.size(); i++)
+        if(connected_switch[i]==port)
+            throw Exeption("You were connected to this port before.");
+    for(map<string, pii>::iterator it=routing_table.begin(); it!=routing_table.end(); ++it)
     {
         Packet p;
         p.setType(UPDATE);
         p.setSource(address(this->port));
-        p.setDest((*it).DEST);
-        string len=itoa((*it).LEN);
+        p.setDest(address(it->DEST));
+        string len=itoa((it->second).LEN);
         p.setData(len.c_str(), len.size()+1);
-
+        
         p.send(sock, port);
     }
-    connectedـswitch.push_back(port);
+
+    connected_switch.push_back(port);
 
     Packet p;
-    p.Type=CONNECT;
+    p.setType(CONNECT);
     p.setSource(address(this->port));
     p.send(sock, port);
 
     cout<<"Connect to port "<<port<<endl;
 }
 
-void disconnect(Packet p)
+void Switch::disconnect(Packet p)
 {
-    addr clinet_addr = p.getSource();
-    if(connectedـclient.find(clinet_addr) == connectedـclient.end())
-        throw Exeption("Error: User "+clinet_addr.to_string()+" is not in connected list");
-    connectedـclient.erase(connectedـclient.find(clinet_addr));
+    string clinet_addr = p.getSource().to_string();
+    if(connected_client.find(clinet_addr) == connected_client.end())
+      throw Exeption("Error: User "+clinet_addr+"is not in connected list");
+    connected_client.erase(connected_client.find(clinet_addr));
 }
 
-void Switch::update_routing_table(address dest, int length, int port)
+void Switch::update_routing_table(string dest, int length, int port)
 {
-    if(routing_table.find(dest)==routing_table.end() or routing_table[dest].LEN > (len+1))
+    if(routing_table.find(dest)==routing_table.end() or routing_table[dest].LEN > (length+1))
     {
-        routing_table[dest] = pii(port, len+1);
-        
-        for(int j=0; j<connectedـswitch.size(); j++)
+        routing_table[dest] = pii(port, length+1);
+
+        for(int j=0; j<connected_switch.size(); j++)
         {
             Packet p;
             p.setType(UPDATE);
             p.setSource(address(this->port));
-            p.setDest(dest);
+            p.setDest(address(dest));
             string len=itoa(length+1);
             p.setData(len.c_str(), len.size()+1);
-            
-            p.send(sock, connectedـswitch[j]);
+          
+            p.send(sock, connected_switch[j]);
         }
     }
 }
 
 void Switch::update(Packet p)
 {
-    char[DATA_LEN] length;
+
+    char length[DATA_LEN];
     p.getData(length);
-    update_routing_table(p.getDest(), atoi(length), p.getSource().to_ulong());
+    update_routing_table(p.getDest().to_string(), atoi(length), p.getSource().to_ulong());
 }
 
 void Switch::pass_data(Packet p)
 {
-    address dest = p.getDest();
-    if(connectedـclient.find(dest) != connectedـclient.end())
-        return connectedـclient[dest];
-    if(routing_table.find(dest) != routing_table.end())
+    string dest = p.getDest().to_string();
+    if(connected_client.find(dest) != connected_client.end())
+        p.send(sock, connected_client[dest]);
+    else if(routing_table.find(dest) != routing_table.end())
     {
         p.setTtl(p.getTtl()-1);
         p.send(sock, routing_table[dest].PORT);   
@@ -114,34 +119,37 @@ void Switch::pass_data(Packet p)
 void Switch::accept_connection(Packet p)
 {
     int sender_port = p.getSource().to_ulong();
-    for(int i=0; i<connectedـswitch.size(); i++)
-        if(connectedـswitch[i]==sender_port)
+    for (int i=0; i<connected_switch.size(); ++i)
+        if(connected_switch[i]==sender_port)
             return;
     connect(sender_port);
-
-    cout<<"I accept connection of a switch on port "<<port<<endl;
+    cout<<"I accept connection of a switch on port "<<sender_port<<endl;
 }
 
 void Switch::set_addr(Packet p, struct sockaddr_in* from)
 {
-    for(map<address, struct sockaddr_in*>::iterator it=connectedـclient.begin(); it!=connectedـclient.end(); ++it)
-        if((*it)==from)
+    cerr<<"I want to set address"<<endl;    
+    for(map<string, struct sockaddr_in*>::iterator it=connected_client.begin(); it!=connected_client.end(); it++)
+        if(it->second==from)
             throw Exeption("I recive a REQ_ADDR packet from a client whitch I connected before");
 
-    address addr = address(unique_addr++);
-    connectedـclient[addr] = from;
+    string addr = itoa(++unique_addr);
+    sh(unique_addr);
+    connected_client[addr]=from;
 
     p.setSource(address(this->port));
-    p.setDest(addr);
+    sh(addr);
+    p.setDest(address(addr));
     p.setType(SET_ADDR);
     p.setTtl(p.getTtl()-1);
     p.send(sock, from);
 
-    cout<<"I set address for clinet "<<addr.to_string()<<endl;
+    cout<<"I set address for clinet "<<addr<<endl;
 }
 
 void Switch::parse_packet(Packet p, struct sockaddr_in* from)
 {
+    cerr<<"I recive a packet and I want to parse"<<endl;
     if(p.getTtl()==0) 
         return;
     if(p.getType()==UPDATE)
@@ -162,17 +170,21 @@ void Switch::run()
 {
     
     fd_set fdset;
-    FD_ZERO(&fdset);
-    FD_SET(STDIN, &fdset);
-    FD_SET(sock, &fdset);
     while(true)
     {
+        FD_ZERO(&fdset);
+        FD_SET(STDIN, &fdset);
+        FD_SET(sock, &fdset);
+
         try
         {
-            if(select(sock+1, &fdset, NULL, NULL, NULL) < 0)
+            //cerr<<"try"<<endl;
+            if(select(sock+1, &fdset, NULL, NULL, NULL)<0)
                 throw Exeption("Error in sockets select");
-            if(FD_ISSET(STDIN , &read_fds))
+            //cerr<<"if checked";
+            if(FD_ISSET(STDIN , &fdset))
             {
+                //cerr<<"stdin"<<endl;
                 string cmd, param1, param2;
                 int connected_port;
                 getline(cin, cmd);
@@ -185,11 +197,12 @@ void Switch::run()
                 else
                     ("Invalid Command\nUsage: Connect Switch [#Switch Port Number]");  
             }
-            else if (FD_ISSET(sock , &read_fds))  
+            else if (FD_ISSET(  sock , &fdset))  
             {
+                //cerr<<"packet"<<endl;
                 struct sockaddr_in from;
                 Packet p;
-                p.recive(sock, &from)
+                p.recive(sock, &from);
                 parse_packet(p, &from);        
             }
         }
@@ -199,3 +212,4 @@ void Switch::run()
         }
     }
 }
+
