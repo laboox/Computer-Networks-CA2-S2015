@@ -97,7 +97,7 @@ void Switch::update_routing_table(string dest, int length, int port)
 void Switch::update(Packet p)
 {
 
-    char length[DATA_LEN];
+    char length[DATA_LEN] = {0};
     p.getData(length);
     update_routing_table(p.getDest().to_string(), atoi(length), p.getSource().to_ulong());
 }
@@ -145,22 +145,40 @@ void Switch::set_addr(Packet p, struct sockaddr_in from)
     cout<<"I set address for clinet "<<addr<<endl;
 }
 
+void Switch::set_server(Packet p, struct sockaddr_in from){
+    for(map<string, struct sockaddr_in>::iterator it=connected_client.begin(); it!=connected_client.end(); it++)
+        if(memcmp(&(it->second), &from, sizeof(from)))
+            throw Exeption("I recive a REQ_ADDR packet from a client whitch I connected before");
+
+    string addr=p.getSource().to_string();
+    connected_client[addr]=from;
+
+    /*p.setSource(address(this->port));
+    p.setDest(address(addr));
+    p.setType(SET_ADDR);
+    p.setTtl(p.getTtl()-1);
+    p.send(sock, &from);*/
+
+    update_routing_table(addr, 0, port);
+    cout<<"I set address for server "<<addr<<endl;
+}
+
 void Switch::parse_packet(Packet p, struct sockaddr_in from)
 {
     if(p.getTtl()==0) 
         return;
     if(p.getType()==UPDATE)
         update(p);
-    else if(p.getType()==DATA)
-        pass_data(p);
     else if(p.getType()==CONNECT)
         accept_connection(p);
     else if(p.getType()==DISCONNECT)
         disconnect(p);
     else if(p.getType()==REQ_ADDR)
         set_addr(p, from);
-    else
-        throw Exeption("Invalid Packet Type");
+    else if(p.getType() == REQ_SERVER)
+        set_server(p, from);
+    else 
+        pass_data(p);
 }
 
 void Switch::run()
@@ -191,7 +209,7 @@ void Switch::run()
                 else
                     ("Invalid Command\nUsage: Connect Switch [#Switch Port Number]");  
             }
-            else if (FD_ISSET(  sock , &fdset))  
+            else if (FD_ISSET(sock , &fdset))  
             {
                 struct sockaddr_in from;
                 Packet p;

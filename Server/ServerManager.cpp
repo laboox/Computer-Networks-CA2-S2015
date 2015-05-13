@@ -6,6 +6,7 @@
 #include "ServerManager.h"
 
 ServerManager::ServerManager (int port){
+    addr = address(SERVER_ADDR);
     sockSW = -1;
     sockSP=socket(AF_INET, SOCK_DGRAM, 0);
     if (sockSP < 0)
@@ -19,7 +20,7 @@ ServerManager::ServerManager (int port){
     switch_sockadrr.sin_addr.s_addr=INADDR_ANY;
     switch_sockadrr.sin_port=htons(port);
     
-    if(bind(sockSP, (struct sockaddr *)&switch_sockadrr, length) < 0) 
+    if(bind(sockSP,(struct sockaddr *)&switch_sockadrr, length) < 0) 
         throw Exeption("Binding Error");
     this->port=port;
 }
@@ -43,13 +44,15 @@ void ServerManager::run() {
                 throw Exeption("Error in sockets select");
             if(FD_ISSET(STDIN , &fdset))
             {
-                string cmd, param1, param2, connected_port;
+                string cmd, param1, param2;
+                int connected_port;
                 getline(cin, cmd);
                 stringstream ss(cmd);
                 if(ss>>param1>>param2>>connected_port)
                 { 
-                    if(param1=="Connect" && param2=="Switch")
-                        connect(atoi(connected_port.c_str()));
+                    if(param1=="Connect" && param2=="Switch"){
+                        connect(connected_port, &SW_sockadrr);
+                    }
                     /*else if(param1=="Send")
                     {
                         Packet p;
@@ -76,7 +79,7 @@ void ServerManager::run() {
                     res.setSource(p.getDest());
                     res.setDest(p.getSource());
                     res.setData(services);
-                    res.send(sockSW, &SW_sockaddr);
+                    res.send(sockSW, &SW_sockadrr);
                  }
             }
             else if (FD_ISSET(sockSP , &fdset))  
@@ -93,11 +96,33 @@ void ServerManager::run() {
         }
         catch(Exeption ex)
         {
+            cout<<ex.get_error()<<endl;
         } 
     } 
 }
 
-void ServerManager::connect(int port){
+void ServerManager::connect(int port, struct sockaddr_in* sw){
+    if(sockSW != -1)
+        throw Exeption("already connected");
+    
+    sockSW=socket(AF_INET, SOCK_DGRAM, 0);
+	if(sockSW<0)
+		throw Exeption("Error in opening sock");
+
+	struct hostent *hp;
+	hp=gethostbyname("localhost");
+	if(hp==0)
+		throw Exeption("Unknown host");
+
+	sw->sin_family=AF_INET;
+	bcopy((char *)hp->h_addr, (char *)&(sw->sin_addr), hp->h_length);
+	sw->sin_port = htons(port);
+
+    Packet req;
+    req.setSource(addr);
+    req.setType(REQ_SERVER);
+    req.send(sockSW,port);
+    cout<<"Connecting SW\n";
 }
 
 string ServerManager::getServiceList(struct sockaddr_in sp){

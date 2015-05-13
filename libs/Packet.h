@@ -36,7 +36,8 @@ enum PacketType{
     ERROR,
     GET_SERVICES_LIST,
     REQ_READ,
-    REQ_WRITE
+    REQ_WRITE,
+    REQ_SERVER
 };
 
 class Packet {

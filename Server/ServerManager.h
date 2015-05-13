@@ -12,7 +12,7 @@ class ServerManager{
 public:
    ServerManager(int port); 
    void run();
-   void connect(int port);
+   void connect(int port, struct sockaddr_in*);
    void sendError(string ,address);
    string getServiceList(struct sockaddr_in);
    string getAllServiceList();
@@ -22,4 +22,5 @@ private:
     int port;
     vector<struct sockaddr_in> services;
     map<char, struct sockaddr_in*> toService;
+    address addr;
 };

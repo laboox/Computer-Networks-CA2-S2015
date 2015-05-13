@@ -19,6 +19,7 @@ class Switch
  	void pass_data(Packet p);	
  	void accept_connection(Packet p);
  	void set_addr(Packet p, struct sockaddr_in from);
+    void set_server(Packet p, struct sockaddr_in from);
  	void parse_packet(Packet p, struct sockaddr_in from);
  	void run();
  private:
