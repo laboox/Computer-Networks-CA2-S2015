@@ -18,14 +18,14 @@ class Switch
  	void update(Packet p);
  	void pass_data(Packet p);	
  	void accept_connection(Packet p);
- 	void set_addr(Packet p, struct sockaddr_in* from);
- 	void parse_packet(Packet p, struct sockaddr_in* from);
+ 	void set_addr(Packet p, struct sockaddr_in from);
+ 	void parse_packet(Packet p, struct sockaddr_in from);
  	void run();
  private:
- 	/*static */int unique_addr;
+ 	int unique_addr;
  	int port;
  	int sock;
  	map<string, pii> routing_table;
- 	map<string, struct sockaddr_in*> connected_client;
+ 	map<string, struct sockaddr_in> connected_client;
  	vector<int> connected_switch;
  }; 

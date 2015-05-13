@@ -1,5 +1,9 @@
 #include "Client.h"
 
+Client::Client()
+{
+	addr=address(0);
+}
 
 bool Client::is_login()
 {
@@ -23,7 +27,6 @@ void Client::login(string username, string password)
 
 void Client::connect(int port)
 {
-	cerr<<"I eneter connect "<<endl;
 	if(! is_login())
 		throw Exeption("You must login at first");
 	if(is_connected())
@@ -64,7 +67,7 @@ void Client::logout()
 	p.setSource(addr);
 	p.send(sock, port);
 
-	close(sock);
+	//close(sock);
 
 	cout<<"User "<<username<<"logout successfully"<<endl;
 }
@@ -117,6 +120,18 @@ void Client::append(string service_name, string data)
 		throw Exeption("You must connect at first");
 	//manage packet fragmentation for sending file
 }
+
+void Client::send_data(string data, string dest_addr)
+{
+	Packet p;
+	p.setType(DATA);
+	p.setSource(addr);
+	p.setDest(address(dest_addr));
+	p.setData(data.c_str(), data.size()+1);
+	p.send(sock, port);
+
+	cout<<"Data sent successfully"<<endl;
+}	
 
 void Client::parse_cmd(string cmd)
 {
@@ -177,25 +192,40 @@ void Client::parse_cmd(string cmd)
 	}
 	else if(order=="Logout")
 		logout();
+	else if(order=="SendData")
+	{
+		string data, dest_addr;
+		if(ss>>data>>dest_addr)
+			send_data(data, dest_addr);	
+		else
+			throw Exeption("Invalid Command\nUsage: TestSend[#Data , #Dest_Address]");
+	}
 	else
 		throw Exeption("Invalid Command");
 }
 
+void Client::get_addr(Packet p)
+{
+	if(addr.to_ulong()!=0)
+		throw Exeption("I have address but I get SET_ADDR packet");
+	addr=p.getDest();
+	cout<<"I recive addr "<<addr.to_string()<<endl;
+}
+
+void Client::get_data(Packet p)
+{
+	char data[MSG_LEN];
+	p.getData(data);
+	cout<<"I recive data "<<data<<" from client"<<p.getDest().to_ulong()<<endl;
+}
 
 void Client::parse_packet(Packet p)
 {
 	if(p.getTtl()==0) return;
 	if(p.getType()==SET_ADDR)
-	{
-		//check lator
-		if(addr!=NULL)
-			throw Exeption("I have addresse but I get SET_ADDR packet");
-		addr=p.getDest();
-	}
+		get_addr(p);
 	else if(p.getType()==DATA)
-	{
-
-	}
+		get_data(p);
 }
 
 
