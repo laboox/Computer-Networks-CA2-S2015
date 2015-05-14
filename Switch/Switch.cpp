@@ -104,9 +104,11 @@ void Switch::update(Packet p)
 
 void Switch::pass_data(Packet p)
 {
+    cout<<"passing packet from "<<p.getSource().to_ulong()<<" to "<<p.getDest().to_ulong()<<"."<<endl;
     string dest = p.getDest().to_string();
-    if(connected_client.find(dest) != connected_client.end())
+    if(connected_client.find(dest) != connected_client.end()){
         p.send(sock, &connected_client[dest]);
+    }
     else if(routing_table.find(dest) != routing_table.end())
     {
         p.setTtl(p.getTtl()-1);

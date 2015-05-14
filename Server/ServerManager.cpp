@@ -28,11 +28,11 @@ ServerManager::ServerManager (int port){
 void ServerManager::run() {
     cout<<"running!\n";
     
+    fd_set fdset;
     while(true)
     {
         try
         {
-            fd_set fdset;
             FD_ZERO(&fdset);
             FD_SET(STDIN, &fdset);
             FD_SET(sockSW, &fdset);
@@ -71,6 +71,7 @@ void ServerManager::run() {
             }
             else if (FD_ISSET(sockSW , &fdset))
             {
+                cout<<"packet recived from socket!\n";
                  Packet p;
                  p.recive(sockSW, &SW_sockadrr);
                  if(p.getType()==GET_SERVICES_LIST){
