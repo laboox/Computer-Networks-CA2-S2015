@@ -5,7 +5,7 @@
 
 #include "ServerManager.h"
 
-ServerManager::ServerManager (int port){
+ServerManager::ServerManager (int port): firewall("AC.txt"){
     addr = address(SERVER_ADDR);
     sockSW = -1;
     sockSP=socket(AF_INET, SOCK_DGRAM, 0);
@@ -27,8 +27,9 @@ ServerManager::ServerManager (int port){
 
 void ServerManager::run() {
     cout<<"running!\n";
-    
     fd_set fdset;
+    struct sockaddr_in SP_sockadrr = {0};
+    struct sockaddr_in SW_sockadrr = {0} ;
     while(true)
     {
         try
@@ -37,8 +38,6 @@ void ServerManager::run() {
             FD_SET(STDIN, &fdset);
             FD_SET(sockSW, &fdset);
             FD_SET(sockSP, &fdset);
-            struct sockaddr_in SP_sockadrr;
-            struct sockaddr_in SW_sockadrr;
 
             if(select(max(sockSW,sockSP)+1, &fdset, NULL, NULL, NULL) < 0)
                 throw Exeption("Error in sockets select");
@@ -52,6 +51,7 @@ void ServerManager::run() {
                 { 
                     if(param1=="Connect" && param2=="Switch"){
                         connect(connected_port, &SW_sockadrr);
+                        sw_port = connected_port;
                     }
                     /*else if(param1=="Send")
                     {
@@ -67,21 +67,34 @@ void ServerManager::run() {
                     cout<<getAllServiceList();
                 }
                 else
-                    ("Invalid Command\nUsage: Connect Switch [#Switch Port Number]");
+                    cout<<("Invalid Command\nUsage: Connect Switch [#Switch Port Number]");
             }
             else if (FD_ISSET(sockSW , &fdset))
             {
+                struct sockaddr_in from = {0};
                 cout<<"packet recived from socket!\n";
-                 Packet p;
-                 p.recive(sockSW, &SW_sockadrr);
-                 if(p.getType()==GET_SERVICES_LIST){
-                    string services=getAllServiceList();
-                    Packet res;
-                    res.setSource(p.getDest());
-                    res.setDest(p.getSource());
-                    res.setData(services);
-                    res.send(sockSW, &SW_sockadrr);
-                 }
+                Packet p;
+                p.recive(sockSW, &from);
+                if(p.getType()==GET_SERVICES_LIST){
+                   string services=getAllServiceList();
+                   Packet res;
+                   res.setType(GET_SERVICES_LIST);
+                   res.setSource(p.getDest());
+                   res.setDest(p.getSource());
+                   res.setData(services);
+                   res.send(sockSW, &from);
+                   cout<<"response sent\n";
+                }
+                else if(p.getType()==REQ_READ || p.getType()==REQ_WRITE){
+                    istringstream iss(p.getDataStr());
+                    string file, uname;
+                    if(getline(iss, file) && getline(iss, uname)){
+                        
+                    }
+                    else{
+
+                    }
+                }
             }
             else if (FD_ISSET(sockSP , &fdset))  
             {
@@ -100,6 +113,26 @@ void ServerManager::run() {
             cout<<ex.get_error()<<endl;
         } 
     } 
+}
+
+void ServerManager::response(address dest, string uname, string file, Access access){
+    if(firewall.checkGranted(uname, file, access)){
+        struct sockaddr_in serv = toService[file[0]];
+        Packet req;
+        req.setType(REQ_READ);
+        req.setData(file);
+        req.send(sockSP, &serv);
+        Packet res;
+        res.recive();
+    }
+    else
+        sendError("your dont have access on this service\n", dest);
+}
+
+string ServiceManager::getFile(string file){
+    Packet p;
+    p.set
+    reciveFrame(sock);
 }
 
 void ServerManager::connect(int port, struct sockaddr_in* sw){
@@ -148,4 +181,10 @@ string ServerManager::getAllServiceList(){
 }
 
 void ServerManager::sendError(string message, address dest){
+    Packet p;
+    p.setType(ERROR);
+    p.setDest(dest);
+    p.setSource(addr);
+    p.setData(message);
+    p.send(sockSW, sw_port);
 }

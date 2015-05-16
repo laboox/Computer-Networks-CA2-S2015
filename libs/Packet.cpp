@@ -186,7 +186,7 @@ void Packet::recive(int sock, struct sockaddr_in* from_sockadrr)
     char msg[MSG_LEN] = {0};
     socklen_t fromlen = sizeof(struct sockaddr_in);
     int n=recvfrom(sock, msg, MSG_LEN, 0, (struct sockaddr *)from_sockadrr, &fromlen);
-    if(n<0) 
+    if(n<0)
         throw Exeption("Error in recvfrom");
     this->getPacketByMessage(msg);
     if(!checkCrc())

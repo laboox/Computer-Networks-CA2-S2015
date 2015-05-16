@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Packet.h"
+#include "Framer.h"
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -26,6 +27,7 @@ public:
     void init(int, string);
     void connectServer();
     string getList();
+    void sendError(string message);
 private:
     int port;
     struct sockaddr_in server;

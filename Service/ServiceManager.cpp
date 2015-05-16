@@ -23,7 +23,29 @@ void ServiceManager::run(){
             inp.setSource(source);
             inp.send(sock, &from);
         }
+        else if(inp.getType()==REQ_READ){
+            string file=inp.getDataStr();
+            if(!isFileExist(path+"/"+file)){
+                sendError("service does not exist\n");
+                continue;
+            }
+            else{
+                string data;
+                data = readAllFile(path+"/"+file);
+                char* buf = new char[data.size()+1];
+                memcmp(buf, data.c_str(), data.size()+1);
+                sendFrame(buf, data.size()+1, source, address(SERVER_ADDR), sock, &from);
+            }
+        }
     }
+}
+
+void ServiceManager::sendError(string message){
+    Packet p;
+    p.setType(ERROR);
+    p.setSource(source);
+    p.setData(message);
+    p.send(sock, port);
 }
 
 void ServiceManager::init(int portnum, string path){

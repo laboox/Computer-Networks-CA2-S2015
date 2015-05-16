@@ -7,6 +7,7 @@
 
 #include "primary_header.h"
 #include "Packet.h"
+#include "Firewall.h"
 
 class ServerManager{
 public:
@@ -20,7 +21,9 @@ private:
     int sockSW;
     int sockSP;
     int port;
+    int sw_port;
     vector<struct sockaddr_in> services;
     map<char, struct sockaddr_in*> toService;
     address addr;
+    Firewall firewall;
 };

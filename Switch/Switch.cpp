@@ -104,7 +104,7 @@ void Switch::update(Packet p)
 
 void Switch::pass_data(Packet p)
 {
-    cout<<"passing packet from "<<p.getSource().to_ulong()<<" to "<<p.getDest().to_ulong()<<"."<<endl;
+    cout<<"passing packet from "<<p.getSource().to_string()<<" to "<<p.getDest().to_string()<<"."<<endl;
     string dest = p.getDest().to_string();
     if(connected_client.find(dest) != connected_client.end()){
         p.send(sock, &connected_client[dest]);
@@ -131,7 +131,7 @@ void Switch::accept_connection(Packet p)
 void Switch::set_addr(Packet p, struct sockaddr_in from)
 {
     for(map<string, struct sockaddr_in>::iterator it=connected_client.begin(); it!=connected_client.end(); it++)
-        if(memcmp(&(it->second), &from, sizeof(from)))
+        if(!memcmp(&(it->second), &from, sizeof(from)))
             throw Exeption("I recive a REQ_ADDR packet from a client whitch I connected before");
 
     string addr=address(++unique_addr).to_string();
@@ -147,9 +147,10 @@ void Switch::set_addr(Packet p, struct sockaddr_in from)
     cout<<"I set address for clinet "<<addr<<endl;
 }
 
-void Switch::set_server(Packet p, struct sockaddr_in from){
+void Switch::set_server(Packet p, struct sockaddr_in from)
+{
     for(map<string, struct sockaddr_in>::iterator it=connected_client.begin(); it!=connected_client.end(); it++)
-        if(memcmp(&(it->second), &from, sizeof(from)))
+        if(!memcmp(&(it->second), &from, sizeof(from)))
             throw Exeption("I recive a REQ_ADDR packet from a client whitch I connected before");
 
     string addr=p.getSource().to_string();
@@ -209,10 +210,11 @@ void Switch::run()
                         connect(connected_port);
                 }
                 else
-                    ("Invalid Command\nUsage: Connect Switch [#Switch Port Number]");  
+                    cout<<("Invalid Command\nUsage: Connect Switch [#Switch Port Number]");  
             }
             else if (FD_ISSET(sock , &fdset))  
             {
+                cout<<"a packet recived!\n";
                 struct sockaddr_in from;
                 Packet p;
                 p.recive(sock, &from);

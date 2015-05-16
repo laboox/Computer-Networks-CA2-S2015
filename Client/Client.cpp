@@ -99,7 +99,7 @@ void Client::request(string service_name, string access_type)
 
     Packet p;
     p.setType(access_type=="read"? REQ_READ : REQ_WRITE);
-    p.setData(service_name.c_str(), service_name.size()+1); 
+    p.setData(service_name + "\n" + username); 
     p.setSource(addr);
     p.setDest(address(SERVER_ADDR));
 	p.send(sock, port);
@@ -226,6 +226,9 @@ void Client::parse_packet(Packet p)
 	if(p.getTtl()==0) return;
 	if(p.getType()==SET_ADDR)
 		get_addr(p);
+    else if(p.getType()==GET_SERVICES_LIST){
+        cout<<"Services:\n"<<p.getDataStr();
+    }
 	else if(p.getType()==DATA)
 	{
 		get_data(p);
@@ -252,12 +255,13 @@ void Client::run()
                 getline(cin, cmd);
             	parse_cmd(cmd);
             }
-            else if (FD_ISSET(sock , &fdset))  
+            else if (FD_ISSET(sock , &fdset))
             {
+                cout<<"recived a packet.\n";
                 struct sockaddr_in from_sockadrr;
                 Packet p;
                 p.recive(sock, &from_sockadrr);
-                parse_packet(p);       
+                parse_packet(p);
             }
         }
         catch(Exeption ex)
