@@ -94,7 +94,7 @@ void Client::request(string service_name, string access_type)
 	if(! is_connected())
 		throw Exeption("You must connect at first");
 
-    if(access_type!="read" && access_type!="write")
+    if(access_type!="Read" && access_type!="Write")
     	throw Exeption("Invalid access type");
 
     Packet p;

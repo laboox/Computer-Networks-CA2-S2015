@@ -8,6 +8,7 @@
 #include "primary_header.h"
 #include "Packet.h"
 #include "Firewall.h"
+#include "Framer.h"
 
 class ServerManager{
 public:
@@ -17,6 +18,7 @@ public:
    void sendError(string ,address);
    string getServiceList(struct sockaddr_in);
    string getAllServiceList();
+   void response(address dest, string uname, string file, Access access);
 private:
     int sockSW;
     int sockSP;

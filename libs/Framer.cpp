@@ -19,7 +19,7 @@ bool isFileExist(string path){
 
 string readAllFile(string path){
     std::ifstream t(path);
-    if(t.good()){
+    if(!t.good()){
         throw Exeption("file does not exist.\n");
     }
     std::string str((std::istreambuf_iterator<char>(t)),

@@ -89,10 +89,11 @@ void ServerManager::run() {
                     istringstream iss(p.getDataStr());
                     string file, uname;
                     if(getline(iss, file) && getline(iss, uname)){
-                        
+                        cout<<"requsting to access "<<file<<" for "<<uname<<endl;
+                        response(p.getSource(), uname, file, (p.getType()==REQ_READ)?READ:WRITE);
                     }
                     else{
-
+                        sendError("packet is not valid.\n", p.getSource());
                     }
                 }
             }
@@ -116,24 +117,22 @@ void ServerManager::run() {
 }
 
 void ServerManager::response(address dest, string uname, string file, Access access){
-    if(firewall.checkGranted(uname, file, access)){
-        struct sockaddr_in serv = toService[file[0]];
+    char buffer[2048] = {0};
+    if(firewall.isGranted(uname, file, access)){
+        struct sockaddr_in* serv = toService[file[0]];
         Packet req;
         req.setType(REQ_READ);
         req.setData(file);
-        req.send(sockSP, &serv);
-        Packet res;
-        res.recive();
+        req.send(sockSP, serv);
+        //Packet res;
+        //res.recive();
+        reciveFrame(buffer, sockSP, serv);
+        sendFrame(buffer, strlen(buffer)+1, addr, dest, sockSW, sw_port);
     }
     else
         sendError("your dont have access on this service\n", dest);
 }
 
-string ServiceManager::getFile(string file){
-    Packet p;
-    p.set
-    reciveFrame(sock);
-}
 
 void ServerManager::connect(int port, struct sockaddr_in* sw){
     if(sockSW != -1)

@@ -17,6 +17,7 @@ void ServiceManager::run(){
     while(true){
         Packet inp;
         inp.recive(sock, &from);
+        try{
         if(inp.getType()==GET_SERVICES_LIST){
             string list = getList();
             inp.setData(list);
@@ -25,8 +26,9 @@ void ServiceManager::run(){
         }
         else if(inp.getType()==REQ_READ){
             string file=inp.getDataStr();
+            cout<<"try to send "<<(path+"/"+file)<<" to server\n";
             if(!isFileExist(path+"/"+file)){
-                sendError("service does not exist\n");
+                sendError("service does not exist\n", &from);
                 continue;
             }
             else{
@@ -37,15 +39,19 @@ void ServiceManager::run(){
                 sendFrame(buf, data.size()+1, source, address(SERVER_ADDR), sock, &from);
             }
         }
+        }
+        catch (Exeption ex){
+            cout<<ex.get_error()<<endl;
+        }
     }
 }
 
-void ServiceManager::sendError(string message){
+void ServiceManager::sendError(string message, struct sockaddr_in* to){
     Packet p;
     p.setType(ERROR);
     p.setSource(source);
     p.setData(message);
-    p.send(sock, port);
+    p.send(sock, to);
 }
 
 void ServiceManager::init(int portnum, string path){

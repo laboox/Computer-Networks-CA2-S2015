@@ -27,7 +27,7 @@ public:
     void init(int, string);
     void connectServer();
     string getList();
-    void sendError(string message);
+    void sendError(string message, struct sockaddr_in*);
 private:
     int port;
     struct sockaddr_in server;

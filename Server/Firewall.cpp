@@ -45,7 +45,7 @@ Firewall::Firewall(string path){
 }
 
 bool Firewall::isGranted(string uname, string file, Access access){
-    if(table.count(uname, file)==0)
+    if(table.count(pss(uname, file))==0)
         return false;
     else
         return table[pss(uname, file)].checkAccess(access);
