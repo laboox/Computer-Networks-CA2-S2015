@@ -106,7 +106,7 @@ void Client::request(string service_name, string access_type)
 
 	ofstream file;
 	file.open(service_name);
-	char buffer[2048];
+	char buffer[2048] = {0};
 	struct sockaddr_in from_sockadrr;
 	reciveFrame(buffer, sock, &from_sockadrr);
 	file << buffer;

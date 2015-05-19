@@ -124,7 +124,7 @@ void ServerManager::response(address dest, string uname, string file, Access acc
         sendFrame(buffer, strlen(buffer)+1, addr, dest, sockSW, sw_port);
     }
     else
-        sendError("your dont have access on this service\n", dest);
+        sendError("you have no access\n", dest);
 
 }
 

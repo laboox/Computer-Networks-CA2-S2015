@@ -105,9 +105,10 @@ void reciveFrame( char* data, int sock, struct sockaddr_in* from ) {
         char* temp = temparr;
         Packet p;
         p.recive(sock, from);
-        int n = p.getData(temp);
-        if(p.getType()==ERROR)
+        if(p.getType()!=DATA){
             throw Exeption(p.getDataStr());
+        }
+        int n = p.getData(temp);
         if(count!=temp[0])
             throw Exeption("error reciving frame");
         temp = (char*)temp + 1;
