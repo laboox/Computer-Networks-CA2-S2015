@@ -28,7 +28,7 @@ void ServiceManager::run(){
             string file=inp.getDataStr();
             cout<<"try to send "<<(path+"/"+file)<<" to server\n";
             if(!isFileExist(path+"/"+file)){
-                sendError("service does not exist\n", &from);
+                sendError("service not exist\n", &from);
                 continue;
             }
             else{

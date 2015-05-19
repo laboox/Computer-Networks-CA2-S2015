@@ -13,6 +13,8 @@ void Packet::setData(const char data[23], unsigned int size){
 }
 
 void Packet::setData(string data){
+    if(data.size()>22)
+        throw Exeption("Message is too large too send\n");
     length = bitset<40>(data.size()+1);
     setData(data.c_str(), data.size()+1);
 }
