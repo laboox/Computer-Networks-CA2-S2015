@@ -41,6 +41,16 @@ void ServiceManager::run(){
                 delete[] buf;
             }
         }
+        else if(inp.getType()==APPEND_FILE || inp.getType()==SEND_FILE){
+            char buffer[2048]={0};
+            string file = inp.getDataStr();
+            cout<<"writing in file "<<file<<endl;
+            bool isAppend = inp.getType()==APPEND_FILE;
+            reciveFrame(buffer, sock, &from);
+            ofstream ofs(path+"/"+file, isAppend?std::ofstream::app:std::ofstream::out);
+            ofs<<buffer;
+            ofs.close();
+        }
         }
         catch (Exeption ex){
             cout<<ex.get_error()<<endl;

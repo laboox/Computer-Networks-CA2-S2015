@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include "primary_header.h"
 #include "Packet.h"
 #include "Framer.h"
@@ -35,5 +36,6 @@ private:
 	struct sockaddr_in sw;
 	int port;
 	int sock;
+    vector<string> services;
 	bitset<ADDR_LEN> addr;
 };

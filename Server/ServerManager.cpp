@@ -88,6 +88,9 @@ void ServerManager::run() {
                         sendError("packet is not valid.\n", p.getSource());
                     }
                 }
+                else if(p.getType()==SEND_FILE || p.getType()==APPEND_FILE){
+                    reciveService(p.getDataStr(), &from, p.getType()==APPEND_FILE);
+                }
             }
             else if (FD_ISSET(sockSP , &fdset))  
             {
@@ -106,6 +109,18 @@ void ServerManager::run() {
             cout<<ex.get_error()<<endl;
         } 
     } 
+}
+
+void ServerManager::reciveService(string file, struct sockaddr_in* from, bool isAppend){
+    cout<<"try to write/append file: "<<file<<endl;
+    char buffer[2048] = {0};
+    struct sockaddr_in* serv = toService[file[0]];
+    reciveFrame(buffer, sockSW, from);
+    Packet req;
+    req.setType(isAppend?APPEND_FILE:SEND_FILE);
+    req.setData(file);
+    req.send(sockSP, serv);
+    sendFrame(buffer, strlen(buffer)+1, addr, addr, sockSP, serv);
 }
 
 void ServerManager::response(address dest, string uname, string file, Access access){

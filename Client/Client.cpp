@@ -113,6 +113,8 @@ void Client::request(string service_name, string access_type)
 	file.close();
 
 	cout<<"I recive file "<<service_name<<" successfully"<<endl;
+    if(access_type=="Write")
+        services.push_back(service_name);
 }
 
 void Client::send(string file)
@@ -121,7 +123,26 @@ void Client::send(string file)
 		throw Exeption("You must login at first");
 	if(! is_connected())
 		throw Exeption("You must connect at first");
-	//manage packet fragmentation for sending file
+
+    if(find(services.begin(),services.end(),file)==services.end())
+        throw Exeption("Service does not requested.\n");
+    
+    if(!isFileExist(file))
+        throw Exeption("Service does not requested.\n");
+
+    Packet p;
+    p.setType(SEND_FILE);
+    p.setDest(address(SERVER_ADDR));
+    p.setSource(addr);
+    p.setData(file);
+    p.send(sock, port);
+    
+    string data = readAllFile(file);
+    char* buf = new char[data.size()+1];
+    memcpy(buf, data.c_str(), data.size()+1);
+    cout<<"I want to send file below to server:"<<endl<<buf<<endl;
+    sendFrame(buf, data.size()+1, addr, address(SERVER_ADDR), sock, port);
+    delete[] buf;
 }
 
 void Client::append(string service_name, string data)
@@ -130,7 +151,19 @@ void Client::append(string service_name, string data)
 		throw Exeption("You must login at first");
 	if(! is_connected())
 		throw Exeption("You must connect at first");
-	//manage packet fragmentation for sending file
+
+    Packet p;
+    p.setType(APPEND_FILE);
+    p.setDest(address(SERVER_ADDR));
+    p.setSource(addr);
+    p.setData(service_name);
+    p.send(sock, port);
+    
+    char* buf = new char[data.size()+1];
+    memcpy(buf, data.c_str(), data.size()+1);
+    cout<<"I want to send file below to server:"<<endl<<buf<<endl;
+    sendFrame(buf, data.size()+1, addr, address(SERVER_ADDR), sock, port);
+    delete[] buf;
 }
 
 void Client::send_data(string data, string dest_addr)

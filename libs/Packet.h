@@ -37,6 +37,8 @@ enum PacketType{
     GET_SERVICES_LIST,
     REQ_READ,
     REQ_WRITE,
+    SEND_FILE,
+    APPEND_FILE,
     REQ_SERVER
 };
 

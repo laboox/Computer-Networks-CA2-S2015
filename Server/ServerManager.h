@@ -19,6 +19,7 @@ public:
    string getServiceList(struct sockaddr_in);
    string getAllServiceList();
    void response(address dest, string uname, string file, Access access);
+   void reciveService(string file, struct sockaddr_in* from, bool isAppend);
 private:
     int sockSW;
     int sockSP;
