@@ -53,14 +53,6 @@ void ServerManager::run() {
                         connect(connected_port, &SW_sockadrr);
                         sw_port = connected_port;
                     }
-                    /*else if(param1=="Send")
-                    {
-                        Packet p;
-                        p.setType(DATA);
-                        p.setData(param2.c_str(), param2.size()+1);
-                        char[MSG_LEN] msg;
-                        p.getPacketByteArray(msg);
-                    }*/
                 }
                 else if(cmd == "getlist"){
                     cout<<"getting services list from.\n";
@@ -119,6 +111,7 @@ void ServerManager::run() {
 void ServerManager::response(address dest, string uname, string file, Access access){
     char buffer[2048] = {0};
     if(firewall.isGranted(uname, file, access)){
+        cout<<"Access granted"<<endl;
         struct sockaddr_in* serv = toService[file[0]];
         Packet req;
         req.setType(REQ_READ);
@@ -127,10 +120,12 @@ void ServerManager::response(address dest, string uname, string file, Access acc
         //Packet res;
         //res.recive();
         reciveFrame(buffer, sockSP, serv);
+        cout <<"I want to send file below:"<<endl<<buffer<<endl; 
         sendFrame(buffer, strlen(buffer)+1, addr, dest, sockSW, sw_port);
     }
     else
         sendError("your dont have access on this service\n", dest);
+
 }
 
 

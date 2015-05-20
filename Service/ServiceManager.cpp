@@ -35,8 +35,10 @@ void ServiceManager::run(){
                 string data;
                 data = readAllFile(path+"/"+file);
                 char* buf = new char[data.size()+1];
-                memcmp(buf, data.c_str(), data.size()+1);
+                memcpy(buf, data.c_str(), data.size()+1);
+                cout<<"I want to send file below to server:"<<endl<<buf<<endl;
                 sendFrame(buf, data.size()+1, source, address(SERVER_ADDR), sock, &from);
+                delete[] buf;
             }
         }
         }

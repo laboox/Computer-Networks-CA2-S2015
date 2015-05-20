@@ -103,6 +103,16 @@ void Client::request(string service_name, string access_type)
     p.setSource(addr);
     p.setDest(address(SERVER_ADDR));
 	p.send(sock, port);
+
+	ofstream file;
+	file.open(service_name);
+	char buffer[2048];
+	struct sockaddr_in from_sockadrr;
+	reciveFrame(buffer, sock, &from_sockadrr);
+	file << buffer;
+	file.close();
+
+	cout<<"I recive file "<<service_name<<" successfully"<<endl;
 }
 
 void Client::send(string file)

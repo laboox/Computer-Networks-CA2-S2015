@@ -214,7 +214,6 @@ void Switch::run()
             }
             else if (FD_ISSET(sock , &fdset))  
             {
-                cout<<"a packet recived!\n";
                 struct sockaddr_in from;
                 Packet p;
                 p.recive(sock, &from);

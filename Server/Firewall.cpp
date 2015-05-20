@@ -45,8 +45,15 @@ Firewall::Firewall(string path){
 }
 
 bool Firewall::isGranted(string uname, string file, Access access){
+    cout<<"Checking Request"<<endl;
     if(table.count(pss(uname, file))==0)
+    {
+        cout<<"Access denied"<<endl;
         return false;
+    }
     else
+    {
+        cout<<"Going to Access"<<endl;
         return table[pss(uname, file)].checkAccess(access);
+    }
 }

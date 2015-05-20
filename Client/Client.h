@@ -2,6 +2,7 @@
 
 #include "primary_header.h"
 #include "Packet.h"
+#include "Framer.h"
 
 class Client
 {
